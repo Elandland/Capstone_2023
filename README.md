@@ -4,9 +4,9 @@
 
 ## 팀원 및 역할 분담
 ```
-프론드엔드 - 이민석, 장현지
+프론드엔드 - 이민석, 장현지, 박은수
 백엔드 - 임찬솔
-디자인 - 이민석, 임찬솔, 장현지
+디자인 - 이민석, 임찬솔, 장현지, 박은수
 ```
 
 
@@ -28,8 +28,8 @@
 
 Android Studio
 
-Front end / Kotlin
+Front end / Java
 
-Back end / Kotlin or Java
+Back end /  Java
 
 Database / MySQL
