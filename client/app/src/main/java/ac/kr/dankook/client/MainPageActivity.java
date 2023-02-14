@@ -30,9 +30,9 @@ public class MainPageActivity extends Activity {
         image.bringToFront();
 
 
-        ImageView matching = (ImageView) findViewById(R.id.login_page_logoImageView);
+        ImageView matching = (ImageView)findViewById(R.id.login_page_logoImageView);
 
 
         matching.bringToFront();
     }
-    }
+}
