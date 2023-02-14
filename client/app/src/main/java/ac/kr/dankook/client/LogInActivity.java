@@ -41,7 +41,7 @@ public class LogInActivity extends AppCompatActivity {
 
     private int RequestLogin(String id, String password){
 
-
+        return 0;
     }
     private void LoadViewById(){
         if(mSignUpText == null){
