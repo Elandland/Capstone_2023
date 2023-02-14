@@ -10,31 +10,39 @@
     <ImageView
         android:id="@+id/startPageLogoImageView"
         android:layout_width="0dp"
-
         android:layout_height="0dp"
+
         android:scaleType="fitCenter"
         android:src="@drawable/logo_icon"
+        app:layout_constrainedHeight="true"
+
+        app:layout_constrainedWidth="true"
+
         app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
 
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.63" />
+
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintWidth_percent="0.5" />
 
     <TextView
         android:id="@+id/startPageLogoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
         android:shadowColor="@color/text_shadow_color"
+
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.5"
+
+        android:gravity="center"
         android:shadowDy="4.0"
         android:shadowRadius="4"
-        android:textSize="30sp"
         android:text="열 걸음 가까이"
         app:layout_constraintBottom_toBottomOf="parent"
 
