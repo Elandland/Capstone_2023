@@ -1,10 +1,13 @@
 package ac.kr.dankook.client;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -55,6 +58,17 @@ public class MainPageActivity extends Activity {
             }
         });
 
+        // 진동 효과
+        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+
+        long[] vibratePattern = new long[]{1000, 500};
+        int repeat = 1;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, repeat));
+        } else {
+            vibrator.vibrate(vibratePattern, repeat);
+        }
 
     }
 }
