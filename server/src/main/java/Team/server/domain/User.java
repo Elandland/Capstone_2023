@@ -34,7 +34,7 @@ public class User {
     private String password;
 
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)           //에러뜸 수정해야됨
     private List<Review> reviews = new ArrayList<>();
 
 
