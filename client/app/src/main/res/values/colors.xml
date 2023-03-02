@@ -13,4 +13,5 @@
     <color name='text_shadow_color'>#7F7F7F</color>
     <color name='box_color'>#40FCFCFC</color>
     <color name="login_input_box">#40FFFFFF</color>
+    <color name="signup_continue_box">#FBB6B6</color>
 </resources>
