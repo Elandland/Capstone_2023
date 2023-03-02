@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="red">#FFFF0000</color>
-    <color name='background_start_color'>#FF797E</color>
-    <color name="background_end_color">#FFFFFF</color>
-    <color name='text_shadow_color'>#7F7F7F</color>
-    <color name='box_color'>#40FCFCFC</color>
-    <color name="login_input_box">#40FFFFFF</color>
-    <color name="signup_continue_box">#FBB6B6</color>
+    <string name="promt_gender">성별을 선택하세요</string>
+    <string name="promt_age">나이를 선택하세요</string>
+
+    <string-array name="gender">
+        <item>선택</item>
+        <item>남</item>
+        <item>여</item>
+    </string-array>
+
+    <string-array name="age">
+        <item>선택</item>
+        <item>18세</item>
+        <item>19세</item>
+        <item>20세</item>
+        <item>21세</item>
+        <item>22세</item>
+        <item>23세</item>
+        <item>24세</item>
+        <item>25세</item>
+        <item>26세</item>
+        <item>27세</item>
+        <item>28세</item>
+        <item>29세</item>
+        <item>30세</item>
+    </string-array>
+
 </resources>
