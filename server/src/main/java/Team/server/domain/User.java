@@ -15,6 +15,9 @@ public class User {
 
     @Id //기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "User_Id")
+    private Long id;
+
     @Column(name = "Email")
     private String email;
 

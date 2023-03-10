@@ -1,6 +1,7 @@
 package Team.server.controller;
 
 import Team.server.domain.User;
+import Team.server.service.UserService;
 import Team.server.service.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,25 +18,25 @@ import javax.validation.Valid;
 @RequestMapping("/users")
 public class HomeController {
 
-
+    private final UserService userService;
 
     @GetMapping("/register")        // /users/register로 이동할 시
     public String registForm(@ModelAttribute UserDto userDto){
-        User user = new User();     //user는 프로텍트니까  dto에서 가져와야됨
-
-
+            return "/users/register";
     }
 
 
 
     @PostMapping("/register")
-    public String save(@Valid @ModelAttribute User user, BindingResult result){
+    public String save(@Valid @ModelAttribute UserDto userDto, BindingResult result){
         if(result.hasErrors()){
-            return "/users/addUserForm";    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
+            return "/users/register";    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
         }
-
-        //저장하기
-
+        else{
+            if(userService.joinCheck(userDto)){
+                userService.join(userDto);
+            }
+        }
         return "redirect:/";        //저장되면 메인 페이지로로
 
     }

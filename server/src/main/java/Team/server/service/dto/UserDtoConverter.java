@@ -16,4 +16,9 @@ public class UserDtoConverter {
                 .password(user.getPassword())
                 .build();
     }
+
+    public void passwordEncoding(String encodingPassword) {
+        this.password = encodingPassword;
+    }
+
 }
