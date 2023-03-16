@@ -33,8 +33,8 @@ public class HomeController {
             return "/users/register";    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
         }
         else{
-            if(userService.joinCheck(userDto)){
-                userService.join(userDto);
+            if(userService.signupCheck(userDto)){
+                userService.signup(userDto);
             }
         }
         return "redirect:/";        //저장되면 메인 페이지로로
