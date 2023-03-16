@@ -16,8 +16,11 @@ import java.security.NoSuchAlgorithmException;
 public class UserService {
 
     private final UserRepository userRepository;
-    public boolean signupCheck(UserDto userDto) {         //dto로 받아서 중복 체크함
-        User findUser = userRepository.findByEmail(userDto.getEmail());
+    public boolean signupCheck(UserDtoConverter userDtoConverter) {         //dto로 받아서 중복 체크함
+
+        User user = userDtoConverter.toUserDto(어떻게든 받음);
+
+        User findUser = userRepository.findByEmail(user.getEmail());
         if (findUser == null) {     //이메일 같은거 없으면 중복 아님.
             return true;
         } else {
