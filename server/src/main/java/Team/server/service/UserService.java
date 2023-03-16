@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Service
@@ -35,10 +33,10 @@ public class UserService {
 
         User user = userDtoConverter.toUserDto(어떻게든 받음);
 
-        User findUser = UserRepository.findByEmail(user.getEmail());
+        User findUser = userRepository.findByEmail(user.getEmail());
         if (findUser == null) {
-            UserRepository.save(User);
-            return User.getId();
+            userRepository.save(user);
+            return user.getId();
         } else{
             return null;
         }
