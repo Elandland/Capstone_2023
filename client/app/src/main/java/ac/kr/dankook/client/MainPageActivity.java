@@ -62,6 +62,15 @@ public class MainPageActivity extends Activity {
             }
         });
 
+        // 팝업 창
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPageActivity.this, MainPagePopupActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+
         // 진동 효과
         Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
