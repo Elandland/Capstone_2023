@@ -54,7 +54,7 @@
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
 
-            android:fontFamily="@font/JalnanOTF"
+            android:fontFamily="@font/jalnanotf"
             android:text="sign up"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/signup_edit_text"
+                android:background="@drawable/login_edit_text"
 
 
                 android:hint="이름을 입력하세요"
@@ -231,7 +231,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/signup_phoneNum_text"
+            android:id="@+id/signup_phoneNum_editText"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
@@ -276,7 +276,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/signup_edit_text"
+                android:background="@drawable/login_edit_text"
 
 
                 android:hint="E-mail을 입력하세요"
@@ -334,7 +334,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/signup_edit_text"
+                android:background="@drawable/login_edit_text"
 
 
                 android:hint="E-mail을 입력하세요"

@@ -40,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private int RequestSignup(String name, String phoneNum, String email){
-
+        return 0;
 
     }
     private void LoadViewById(){
