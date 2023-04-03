@@ -3,6 +3,7 @@ package Team.server.service;
 import Team.server.domain.User;
 import Team.server.repository.UserRepository;
 import Team.server.service.dto.UserDto;
+import Team.server.service.dto.UserDtoConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +16,11 @@ import java.security.NoSuchAlgorithmException;
 public class UserService {
 
     private final UserRepository userRepository;
-    public boolean joinCheck(UserDto userDto) {         //dto로 받아서 중복 체크함
-        User findUser = userRepository.findByEmail(userDto.getEmail());
+    public boolean signupCheck(UserDtoConverter userDtoConverter) {         //dto로 받아서 중복 체크함
+
+        User user = userDtoConverter.toUserDto(어떻게든 받음);
+
+        User findUser = userRepository.findByEmail(user.getEmail());
         if (findUser == null) {     //이메일 같은거 없으면 중복 아님.
             return true;
         } else {
@@ -26,15 +30,19 @@ public class UserService {
 
     // 회원가입
     @Transactional
-    public Long join(UserDto userDto) throws NoSuchAlgorithmException {
-        userDto.passwordEncoding(encrypt(userDto.getPassword()));
-        User user = userDto.toEntity();
-        User findUser = UserRepository.findByEmail(user.getEmail());
+    public Long signup(UserDtoConverter userDtoConverter) throws NoSuchAlgorithmException {
+
+        //user data 불러옴
+
+        User user = userDtoConverter.toUserDto(어떻게든 받음);
+
+        User findUser = userRepository.findByEmail(user.getEmail());
         if (findUser == null) {
-            UserRepository.save(User);
-            return User.getId();
+            userRepository.save(user);
+            return user.getId();
         } else{
             return null;
         }
     }
+
 }

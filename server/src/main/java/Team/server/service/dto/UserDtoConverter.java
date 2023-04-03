@@ -17,8 +17,4 @@ public class UserDtoConverter {
                 .build();
     }
 
-    public void passwordEncoding(String encodingPassword) {
-        this.password = encodingPassword;
-    }
-
 }

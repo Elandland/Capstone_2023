@@ -28,7 +28,7 @@ public class UserDto {
         this.age = age;
         this.phone_num = phone_num;
         this.password = password;
-
     }
+
 
 }
