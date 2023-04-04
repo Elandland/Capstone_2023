@@ -7,25 +7,7 @@
     android:background="@drawable/background_gradient"
     tools:context=".SignUpActivity">
 
-    <ImageView
-        android:id="@+id/login_page_logoImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitCenter"
 
-        android:src="@drawable/logo_icon"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:layout_constraintVertical_bias="0.07"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.31" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -353,12 +335,14 @@
         android:layout_height="0dp"
 
         android:layout_margin="0dp"
-        android:autoSizeTextType="uniform"
+
 
         android:background="@drawable/signup_button"
 
         android:elevation="10dp"
         android:text="Continue"
+        android:textSize="20dp"
+
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -371,6 +355,26 @@
         app:layout_constraintWidth_percent="0.39">
 
     </androidx.appcompat.widget.AppCompatButton>
+
+    <ImageView
+        android:id="@+id/login_page_logoImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+
+        android:src="@drawable/logo_icon"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.07"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.31" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"

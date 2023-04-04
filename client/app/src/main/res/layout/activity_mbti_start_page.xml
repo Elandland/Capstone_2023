@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:text="MBTi 테스트"
+        android:fontFamily="@font/jalnanotf"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +26,7 @@
 
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.75">
+    </TextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
