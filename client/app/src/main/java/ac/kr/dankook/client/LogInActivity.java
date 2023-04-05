@@ -1,5 +1,6 @@
 package ac.kr.dankook.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.view.View;
@@ -28,20 +29,19 @@ public class LogInActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String id=mIdEditText.getText().toString();
                 String password=mPassWordEditText.getText().toString();
                 int result=RequestLogin(id,password);
+                if(result==1){
 
+
+                }
             }
         });
-
-
     }
 
 
     private int RequestLogin(String id, String password){
-
         return 0;
     }
     private void LoadViewById(){
