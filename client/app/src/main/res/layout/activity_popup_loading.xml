@@ -6,7 +6,8 @@
     android:layout_height="400dp"
     android:layout_gravity="center"
     android:background="#00FFFFFF"
-    android:backgroundDimEnabled="false">
+    android:backgroundDimEnabled="false"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"

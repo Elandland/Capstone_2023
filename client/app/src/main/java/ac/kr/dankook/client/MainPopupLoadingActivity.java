@@ -15,6 +15,7 @@ public class MainPopupLoadingActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        // 미완성
         // 현재는 3초간 지연 -> 특정 조건을 만족할 때 까지 지연
         int i = 0;
         while(i < 3) {

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2140625" />
+        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/drawable/background_gradient.xml" value="0.24166666666666667" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/drawable/button_click.xml" value="0.3151041666666667" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/drawable/confirm_button.xml" value="0.28055555555555556" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/drawable/ic_launcher_background.xml" value="0.28055555555555556" />
@@ -18,9 +19,10 @@
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/font/font.xml" value="0.23229166666666667" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_login_page.xml" value="0.29936594202898553" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_main_page.xml" value="0.16" />
-        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_main_page_popup.xml" value="0.1" />
+        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_main_page_popup.xml" value="0.25" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_mbti_start_page.xml" value="0.3619791666666667" />
-        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_popup_loading.xml" value="0.24682971014492755" />
+        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_mbti_test_1.xml" value="0.14" />
+        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_popup_loading.xml" value="0.135" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_signup_page.xml" value="0.33" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_start_page.xml" value="0.1" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/login_page.xml" value="0.3619791666666667" />
