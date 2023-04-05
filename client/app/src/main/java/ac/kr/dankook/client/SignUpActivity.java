@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_signup_page);
         LoadViewById();
 
@@ -40,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private int RequestSignup(String name, String phoneNum, String email){
-
+        return 0;
 
     }
     private void LoadViewById(){
