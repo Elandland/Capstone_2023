@@ -36,7 +36,7 @@
             android:layout_height="0dp"
             android:autoSizeTextType="uniform"
 
-            android:fontFamily="@font/jalnanotf"
+            android:fontFamily="@font/jalnan"
             android:text="sign up"
             android:textColor="@color/black"
             android:textSize="20sp"
