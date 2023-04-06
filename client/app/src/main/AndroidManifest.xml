@@ -11,6 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Client">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBIz5ISavBovFMfrH0hv5n3V3jen86QX0g">
+
+        </meta-data>
+
+
         <activity
             android:name=".StartPageActivity"
             android:exported="true">
@@ -23,7 +31,7 @@
 
         <activity android:name=".MainPageActivity"></activity>
 
-
+        <activity android:name=".MapPageActivity"></activity>
 
         <!--popup activity-->
         <activity android:name=".MainPagePopupActivity"

@@ -29,8 +29,8 @@ public class MainPagePopupActivity extends AppCompatActivity {
         yesbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainPagePopupActivity.this, MainPopupLoadingActivity.class);
-                startActivityForResult(intent, 1);
+                Intent intent = new Intent(MainPagePopupActivity.this,  MapPageActivity.class);
+                startActivity(intent);
             }
         });
         nobtn.setOnClickListener(new View.OnClickListener() {
@@ -40,5 +40,4 @@ public class MainPagePopupActivity extends AppCompatActivity {
             }
         });
     }
-
 }

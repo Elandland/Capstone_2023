@@ -1,4 +1,6 @@
 package ac.kr.dankook.client;
 
-public class MbtiTestActivity1 {
+import android.app.Activity;
+
+public class MbtiTestActivity1 extends Activity {
 }

@@ -1,8 +1,10 @@
 package ac.kr.dankook.client;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,19 +17,18 @@ public class MainPopupLoadingActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        // 미완성
-        // 현재는 3초간 지연 -> 특정 조건을 만족할 때 까지 지연
-        int i = 0;
-        while(i < 3) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            i += 1;
-        }
 
+        // 현재는 3초간 지연 -> 특정 조건을 만족할 때 까지 지연
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainPopupLoadingActivity.this,  MapPageActivity.class);
+                startActivity(intent);
+            }
+        }, 3000);
         // 3초 후 지도 창 이동
+
+
         finish();
     }
 

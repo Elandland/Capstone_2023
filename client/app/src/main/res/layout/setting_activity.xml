@@ -65,7 +65,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:fontFamily="@font/jalnanotf"
+            android:fontFamily="@font/jalnan"
             android:id="@+id/setting_edit_profile_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -106,7 +106,7 @@
 
             android:text="알림 설정"
 
-            android:fontFamily="@font/jalnanotf"
+            android:fontFamily="@font/jalnan"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
             android:textColor="#F157A4"
@@ -136,7 +136,7 @@
 
             android:text="보안"
 
-            android:fontFamily="@font/jalnanotf"
+            android:fontFamily="@font/jalnan"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
             android:textColor="#F157A4"
@@ -165,7 +165,7 @@
             android:text="logout"
             android:textAllCaps="false"
 
-            android:fontFamily="@font/jalnanotf"
+            android:fontFamily="@font/jalnan"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
             android:textColor="#F157A4"
@@ -194,7 +194,7 @@
 
 
             android:text="계정 삭제"
-            android:fontFamily="@font/jalnanotf"
+            android:fontFamily="@font/jalnan"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
             android:textColor="#F157A4"
