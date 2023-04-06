@@ -14,4 +14,6 @@
     <color name='box_color'>#40FCFCFC</color>
     <color name="login_input_box">#40FFFFFF</color>
     <color name="signup_continue_box">#FBB6B6</color>
+    <color name="Setting_button_color">#FFDFE0</color>
+    <color name="shadow">#323232</color>
 </resources>
