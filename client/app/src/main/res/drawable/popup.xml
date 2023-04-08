@@ -5,11 +5,11 @@
     android:layout_width="0dp"
     android:layout_height="0dp"
 
-    android:background="#B5FFFFFF"
+    android:background="#E8FFFFFF"
     android:orientation="vertical"
 
     >
-    <solid android:color="#B5FFFFFF" />
+    <solid android:color="#E8FFFFFF" />
     <corners
         android:bottomLeftRadius="17dp"
         android:bottomRightRadius="17dp"
@@ -18,4 +18,14 @@
     <stroke
         android:width="2dp"
         android:color="#F97B83" />
+
+    <padding
+
+        android:left="4dp"
+
+        android:top="4dp"
+
+        android:right="4dp"
+
+        android:bottom="4dp" />
 </shape>

@@ -3,5 +3,5 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/jalnanotf"></font>
+        android:font="@font/jalnan"></font>
 </font-family>

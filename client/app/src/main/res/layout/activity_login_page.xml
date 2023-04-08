@@ -31,7 +31,7 @@
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:text="Log In"
-        android:fontFamily="@font/jalnanotf"
+        android:fontFamily="@font/jalnan"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
