@@ -37,6 +37,15 @@ public class ProfilePageActivity extends AppCompatActivity {
         LoadDialog();
     }
 
+
+    void SetEvent(){
+        mEditIntrodutionMySelfButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mEditIntrodutionMyselfDialog.show();
+            }
+        });
+    }
     void LoadComponent(){
         mNickNameText = findViewById(R.id.nick_name);
         mIntroductionForUserMBTI = findViewById(R.id.user_mbti_introduction);
