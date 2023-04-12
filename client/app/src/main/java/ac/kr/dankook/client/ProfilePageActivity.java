@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 public class ProfilePageActivity extends AppCompatActivity {
 
     Dialog mEditNicknameDialog;
+    Dialog mEditIntrodutionMyselfDialog;
     TextView mNickNameText;
     TextView mIntroductionForUserMBTI;
     TextView mIntroductionMyself;
@@ -33,6 +34,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
         LoadComponent();
+        LoadDialog();
     }
 
     void LoadComponent(){
@@ -66,7 +68,30 @@ public class ProfilePageActivity extends AppCompatActivity {
         editNickNameCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editTextNickName=findViewById(R.id.edit_nick_name_text);
+                mEditNicknameDialog.dismiss();
+            }
+        });
+
+        mEditIntrodutionMyselfDialog = new Dialog(this);
+        mEditIntrodutionMyselfDialog.setContentView(R.layout.edit_introduce_myself_dialog);
+
+        Button editIntroductionStoreButton=mEditIntrodutionMyselfDialog.findViewById(R.id.edit_introduction_store_button);
+        editIntroductionStoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText editTextNickName=findViewById(R.id.edit_introduce_myself_text);
+                String write_introduction=editTextNickName.getText().toString();
+                if(CheckVaildNickName(write_introduction)){
+                    mIntroductionMyself.setText(write_introduction);
+                    mEditIntrodutionMyselfDialog.dismiss();
+                }
+            }
+        });
+
+        Button editIntroductionCloseButton = mEditNicknameDialog.findViewById(R.id.edit_introduction_dialog_close_button);
+        editNickNameCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 mEditNicknameDialog.dismiss();
             }
         });
@@ -75,4 +100,9 @@ public class ProfilePageActivity extends AppCompatActivity {
     boolean CheckVaildNickName(String nickname){
         return true;
     }
+
+    boolean CheckVaildIntroductionMySelf(String introdution){
+        return true;
+    }
+
 }
