@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintVertical_bias="0.05">
+        app:layout_constraintVertical_bias="0.02">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -27,8 +27,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-
         </ImageView>
 
         <TextView
@@ -55,6 +53,7 @@
         </TextView>
 
         <ImageButton
+            android:contentDescription="no"
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,6 +80,7 @@
         app:layout_constraintVertical_bias="0.1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:id="@+id/nickname_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -123,14 +123,20 @@
                 </TextView>
 
                 <ImageButton
+                    android:contentDescription="no"
                     android:id="@+id/edit_nickname_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background=""
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    app:layout_constraintHeight_percent="0.6"
+                    android:scaleType="fitXY"
                     android:src="@drawable/edit_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/nick_name"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_bias="0">
 
                 </ImageButton>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -170,7 +176,7 @@
             android:background="@drawable/profile_text_box"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.3"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -182,7 +188,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintHeight_percent="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0"
@@ -207,11 +213,15 @@
                 </TextView>
 
                 <ImageButton
+                    android:contentDescription="no"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    app:layout_constraintDimensionRatio="1"
                     android:id="@+id/mbti_test_button_in_profile_page"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
-                    android:background=""
+                    android:background="@null"
                     android:scaleType="fitCenter"
                     android:src="@drawable/profile_to_mbti_test_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -295,7 +305,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintHeight_percent="0.6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0"
@@ -320,11 +330,13 @@
                 </TextView>
 
                 <ImageButton
+                    android:contentDescription="no"
+                    app:layout_constraintDimensionRatio="1"
                     android:id="@+id/edit_introduce_myself_button"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
-                    android:background=""
+                    android:background="@null"
                     android:scaleType="fitCenter"
                     android:src="@drawable/edit_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -371,9 +383,10 @@
         app:layout_constraintVertical_bias="0.97">
 
         <ImageButton
+            android:contentDescription="no"
             android:id="@+id/hart_navigation"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/nav_button_click"
             android:elevation="1dp"
             android:src="@drawable/nv_hart"
@@ -387,9 +400,10 @@
             app:layout_constraintWidth_percent="0.12" />
 
         <ImageButton
+            android:contentDescription="no"
             android:id="@+id/home_navigation"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/nav_button_click"
             android:elevation="1dp"
             android:src="@drawable/nv_home"
@@ -403,9 +417,10 @@
             app:layout_constraintWidth_percent="0.12" />
 
         <ImageButton
+            android:contentDescription="no"
             android:id="@+id/profile_navigation"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/nav_button_click"
             android:elevation="1dp"
             android:src="@drawable/nv_profile"
