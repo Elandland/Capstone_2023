@@ -35,6 +35,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
         LoadComponent();
         LoadDialog();
+        SetEvent();
     }
 
 
@@ -64,14 +65,14 @@ public class ProfilePageActivity extends AppCompatActivity {
     }
 
     void LoadDialog(){
-        mEditNicknameDialog = new Dialog(this);
+        mEditNicknameDialog = new Dialog(ProfilePageActivity.this);
         mEditNicknameDialog.setContentView(R.layout.edit_nickname_dialog);
 
         Button editNickNameStoreButton = mEditNicknameDialog.findViewById(R.id.edit_nickname_store_button);
         editNickNameStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editTextNickName=findViewById(R.id.edit_nick_name_text);
+                EditText editTextNickName=mEditNicknameDialog.findViewById(R.id.edit_nick_name_text);
                 String write_nickname=editTextNickName.getText().toString();
                 if(CheckVaildNickName(write_nickname)){
                     mNickNameText.setText(write_nickname);
@@ -88,30 +89,31 @@ public class ProfilePageActivity extends AppCompatActivity {
             }
         });
 
-        mEditIntrodutionMyselfDialog = new Dialog(this);
+        mEditIntrodutionMyselfDialog = new Dialog(ProfilePageActivity.this);
         mEditIntrodutionMyselfDialog.setContentView(R.layout.edit_introduce_myself_dialog);
 
-        Button editIntroductionStoreButton=mEditIntrodutionMyselfDialog.findViewById(R.id.edit_introduction_store_button);
+        Button editIntroductionStoreButton=mEditIntrodutionMyselfDialog.findViewById(R.id.edit_introduce_store_button);
         editIntroductionStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editTextNickName=findViewById(R.id.edit_introduce_myself_text);
+                EditText editTextNickName=mEditIntrodutionMyselfDialog.findViewById(R.id.edit_introduce_myself_text);
                 String write_introduction=editTextNickName.getText().toString();
-                if(CheckVaildNickName(write_introduction)){
+                if(CheckVaildIntroductionMySelf(write_introduction)){
                     mIntroductionMyself.setText(write_introduction);
                     mEditIntrodutionMyselfDialog.dismiss();
                 }
             }
         });
 
-        Button editIntroductionCloseButton = mEditNicknameDialog.findViewById(R.id.edit_introduction_dialog_close_button);
-        editNickNameCloseButton.setOnClickListener(new View.OnClickListener() {
+        Button editIntroductionCloseButton = mEditIntrodutionMyselfDialog.findViewById(R.id.edit_introduce_dialog_close_button);
+        editIntroductionCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mEditNicknameDialog.dismiss();
+                mEditIntrodutionMyselfDialog.dismiss();
             }
         });
     }
+
 
     boolean CheckVaildNickName(String nickname){
         return true;
