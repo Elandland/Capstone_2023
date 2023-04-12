@@ -45,6 +45,13 @@ public class ProfilePageActivity extends AppCompatActivity {
                 mEditIntrodutionMyselfDialog.show();
             }
         });
+
+        mEditNickNameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mEditNicknameDialog.show();
+            }
+        });
     }
     void LoadComponent(){
         mNickNameText = findViewById(R.id.nick_name);
