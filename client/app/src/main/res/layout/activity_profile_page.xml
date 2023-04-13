@@ -105,6 +105,8 @@
                 app:layout_constraintWidth_percent="0.9">
 
                 <TextView
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanummyeongjo"
                     android:id="@+id/nick_name"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -154,6 +156,8 @@
             </View>
 
             <TextView
+                android:fontFamily="@font/nanummyeongjo"
+                android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="성별 나이"
@@ -195,6 +199,8 @@
                 app:layout_constraintWidth_percent="0.9">
 
                 <TextView
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanummyeongjo"
                     android:id="@+id/MBTI_STR"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -270,6 +276,8 @@
                 </ImageView>
 
                 <TextView
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/bmdohyeon"
                     android:id="@+id/user_mbti_introduction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -312,6 +320,8 @@
                 app:layout_constraintWidth_percent="0.9">
 
                 <TextView
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/bmdohyeon"
                     android:id="@+id/introduce_myself_STR"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -351,6 +361,8 @@
 
 
             <TextView
+                android:textColor="@color/black"
+                android:fontFamily="@font/bmdohyeon"
                 android:id="@+id/introduce_in_profile_page"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
