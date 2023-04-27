@@ -183,8 +183,8 @@
 
         <ImageButton
             android:id="@+id/hart_navigation"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/nav_button_click"
             android:elevation="1dp"
             android:src="@drawable/nv_hart"
@@ -199,8 +199,8 @@
 
         <ImageButton
             android:id="@+id/home_navigation"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/nav_button_click"
             android:elevation="1dp"
             android:src="@drawable/nv_home"
@@ -215,8 +215,8 @@
 
         <ImageButton
             android:id="@+id/profile_navigation"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/nav_button_click"
             android:elevation="1dp"
             android:src="@drawable/nv_profile"

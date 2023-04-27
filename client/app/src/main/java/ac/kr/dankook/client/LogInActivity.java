@@ -1,5 +1,7 @@
 package ac.kr.dankook.client;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.view.View;
@@ -38,7 +40,13 @@ public class LogInActivity extends AppCompatActivity {
 
             }
         });
-
+        mSignUpText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
