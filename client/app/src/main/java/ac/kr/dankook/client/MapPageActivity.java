@@ -29,6 +29,7 @@ public class MapPageActivity extends AppCompatActivity implements OnMapReadyCall
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_map_page);
 
+
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync((this));
 
@@ -55,6 +56,7 @@ public class MapPageActivity extends AppCompatActivity implements OnMapReadyCall
         map = googleMap;
 
         LatLng SEOUL = new LatLng(37.56, 126.97);
+        googleMap.addMarker(new MarkerOptions().position(SEOUL).title("Marker in Seoul"));
 
         /* 마커
         MarkerOptions markerOptions = new MarkerOptions();         // 마커
@@ -65,7 +67,5 @@ public class MapPageActivity extends AppCompatActivity implements OnMapReadyCall
         */
 
         map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL)); // 초기 위치
-        map.animateCamera(CameraUpdateFactory.zoomTo(15)); // 줌의 정도
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL); // 지도 유형 설정
     }
 }
