@@ -18,4 +18,5 @@
     <color name="Setting_button_color">#FFDFE0</color>
     <color name="shadow">#323232</color>
     <color name="send_num_button">#FF9D9D</color>
+    <color name="next_button">#FF8D8D</color>
 </resources>
