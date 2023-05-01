@@ -30,6 +30,7 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
         LoadViewById();
 
+        // login시 id password 가져오기
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
