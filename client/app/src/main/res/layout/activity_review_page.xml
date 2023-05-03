@@ -221,6 +221,51 @@
 
         </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/bad_resize"
+            android:text="별로에요.."
+            android:fontFamily="@font/jalnan"
+            android:textColor="@color/black"
+            android:background=""
+            android:backgroundTint="@color/white"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="85dp"
+            tools:ignore="MissingConstraints">
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/good_resize"
+            android:text="좋아요"
+            android:fontFamily="@font/jalnan"
+            android:textColor="@color/black"
+            android:background=""
+            android:backgroundTint="@color/white"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="85dp"
+            tools:ignore="MissingConstraints">
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/verygood_resize"
+            android:text="최고에요!"
+            android:fontFamily="@font/jalnan"
+            android:textColor="@color/black"
+            android:background=""
+            android:backgroundTint="@color/white"
+            tools:layout_editor_absoluteX="240dp"
+            tools:layout_editor_absoluteY="85dp"
+            tools:ignore="MissingConstraints">
+        </androidx.appcompat.widget.AppCompatButton>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -250,14 +295,4 @@
 
     </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_button">
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
