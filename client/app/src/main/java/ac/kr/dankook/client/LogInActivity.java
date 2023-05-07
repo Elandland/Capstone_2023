@@ -51,11 +51,13 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-
+    // 로그인
     private int RequestLogin(String id, String password){
 
         return 0;
     }
+
+    // 누락 값 확인
     private void LoadViewById(){
         if(mSignUpText == null){
             mSignUpText = findViewById(R.id.signup_text);

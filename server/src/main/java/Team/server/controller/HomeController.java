@@ -24,18 +24,19 @@ public class HomeController {
             return "/users/register";
     }
 
-
-
     @PostMapping("/register")
-    public String save(@Valid @ModelAttribute UserDtoConverter userDtoConverter, BindingResult result) throws Exception {
+    public String save(@Valid @ModelAttribute UserDto userdto, BindingResult result) throws Exception {
         if(result.hasErrors()){
+            System.out.println(result);
+            System.out.println("홈 컨트롤러 문제");
             return "/users/register";    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
+            
         }
         else{
-            if(userService.signupCheck(userDtoConverter)){
-                userService.signup(userDtoConverter);
+            if(userService.signupCheck(userdto)){
+                userService.signup(userdto);
             }
-        }
+        }                                                                                                                           
         return "redirect:/";        //저장되면 메인 페이지로로
 
     }
@@ -50,8 +51,5 @@ public class HomeController {
 
 
     */
-
-
-
 
 }

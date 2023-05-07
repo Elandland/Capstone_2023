@@ -14,13 +14,15 @@ import java.security.NoSuchAlgorithmException;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class UserService {
-
+    
     private final UserRepository userRepository;
-    public boolean signupCheck(UserDtoConverter userDtoConverter) {         //dto로 받아서 중복 체크함
+    private final UserDtoConverter userDtoConverter;
 
-        User user = userDtoConverter.toUserDto(어떻게든 받음);
+    public boolean signupCheck(UserDto userdto) {         //dto로 받아서 중복 체크함
 
+        User user = userDtoConverter.fromUserDto(userdto);
         User findUser = userRepository.findByEmail(user.getEmail());
+        System.out.println(findUser);
         if (findUser == null) {     //이메일 같은거 없으면 중복 아님.
             return true;
         } else {
@@ -30,19 +32,14 @@ public class UserService {
 
     // 회원가입
     @Transactional
-    public Long signup(UserDtoConverter userDtoConverter) throws NoSuchAlgorithmException {
+    public Long signup(UserDto userdto) throws NoSuchAlgorithmException {
 
         //user data 불러옴
 
-        User user = userDtoConverter.toUserDto(어떻게든 받음);
+        User user = userDtoConverter.fromUserDto(userdto);
+        
+        return userRepository.save(user).getId();
 
-        User findUser = userRepository.findByEmail(user.getEmail());
-        if (findUser == null) {
-            userRepository.save(user);
-            return user.getId();
-        } else{
-            return null;
-        }
     }
 
 }
