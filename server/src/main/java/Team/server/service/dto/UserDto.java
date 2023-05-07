@@ -8,8 +8,6 @@ import javax.persistence.Column;
 @Getter
 public class UserDto {
 
-    private String email;
-
     private String name;
 
     private Character sex;
@@ -21,8 +19,7 @@ public class UserDto {
     private String password;
 
     @Builder
-    public UserDto(String email,String name, Character sex ,Long age, String phone_num ,String password){
-        this.email = email;
+    public UserDto(String name, Character sex ,Long age, String phone_num ,String password){
         this.name = name;
         this.sex = sex;
         this.age = age;

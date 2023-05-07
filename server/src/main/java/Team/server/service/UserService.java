@@ -21,9 +21,9 @@ public class UserService {
     public boolean signupCheck(UserDto userdto) {         //dto로 받아서 중복 체크함
 
         User user = userDtoConverter.fromUserDto(userdto);
-        User findUser = userRepository.findByEmail(user.getEmail());
+        User findUser = userRepository.findByName(user.getName());
         System.out.println(findUser);
-        if (findUser == null) {     //이메일 같은거 없으면 중복 아님.
+        if (findUser == null) {     // 이름 같은거 없으면 중복 아님.
             return true;
         } else {
             return false;
@@ -45,7 +45,7 @@ public class UserService {
     //로그인
     @Transactional
     public Boolean login(UserDto userDto) throws Exception {
-        User findUser = userRepository.findByEmail(userDto.getEmail());
+        User findUser = userRepository.findByName(userDto.getName());
 
         if (findUser != null) {
             if (userDto.getPassword().equals(findUser.getPassword())) {
