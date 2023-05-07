@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,11 +18,15 @@ import androidx.appcompat.widget.AppCompatCheckBox;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText NickNameEditText;
+    private EditText NickNameEditText = findViewById(R.id.signup_nickname_editText);
 
-    private EditText PasswordEditText;
+    private EditText PasswordEditText = findViewById(R.id.signup_password_editText);
 
-    private Button SignupButton;
+    private Spinner sexSpinner = (Spinner)findViewById(R.id.spinner_gender);
+
+    private Spinner ageSpinner = (Spinner)findViewById(R.id.spinner_age);
+
+    private Button SignupButton = findViewById(R.id.signup_button);
 
     //체크박스 체크 여부 no check=0, check=1
     private int TermsAgree0=0;
@@ -52,6 +57,10 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name=NickNameEditText.getText().toString();
                 String password=PasswordEditText.getText().toString();
+                String sex = sexSpinner.getSelectedItem().toString();
+                int age = Integer.parseInt(ageSpinner.getSelectedItem().toString());
+
+
                 int result=RequestSignup(name,password);
                 Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
                 startActivity(intent);
