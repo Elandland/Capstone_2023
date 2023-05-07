@@ -1,5 +1,6 @@
 package ac.kr.dankook.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.provider.ContactsContract;
@@ -52,7 +53,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String name=NickNameEditText.getText().toString();
                 String password=PasswordEditText.getText().toString();
                 int result=RequestSignup(name,password);
-
+                Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(intent);
             }
         });
 

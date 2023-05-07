@@ -39,6 +39,10 @@ public class LogInActivity extends AppCompatActivity {
                 String password=mPassWordEditText.getText().toString();
                 int result=RequestLogin(id,password);
 
+                // login 성공 시, main activity로 이동
+                Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
+                startActivity(intent);
+
             }
         });
         mSignUpText.setOnClickListener(new View.OnClickListener() {

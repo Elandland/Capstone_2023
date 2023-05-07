@@ -42,4 +42,17 @@ public class UserService {
 
     }
 
+    //로그인
+    @Transactional
+    public Boolean login(UserDto userDto) throws Exception {
+        User findUser = userRepository.findByEmail(userDto.getEmail());
+
+        if (findUser != null) {
+            if (userDto.getPassword().equals(findUser.getPassword())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
