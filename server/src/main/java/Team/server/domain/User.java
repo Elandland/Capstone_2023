@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Builder
 @Entity
 @Getter
@@ -21,9 +23,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "User_Id")
     private Long id;
-
-    @Column(name = "Email")
-    private String email;
 
     @Column(name = "Name")
     private String name;
@@ -41,8 +40,7 @@ public class User {
     private String password;
 
     @Builder
-    public User(String email,String name, Character sex ,Long age, String phone_num ,String password){
-        this.email = email;
+    public User(String name, Character sex ,Long age, String phone_num ,String password){
         this.name = name;
         this.sex = sex;
         this.age = age;

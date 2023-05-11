@@ -1,24 +1,36 @@
 package ac.kr.dankook.client;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
+
+import ac.kr.dankook.client.connect.RetrofitClient;
+import ac.kr.dankook.client.connect.UserDto;
+import ac.kr.dankook.client.connect.apiService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText NickNameEditText;
 
     private EditText PasswordEditText;
+
+    private Spinner sexSpinner;
+
+    private Spinner ageSpinner;
 
     private Button SignupButton;
 
@@ -46,13 +58,27 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup_page);
         LoadViewById();
 
+
+
+
+
+
+        sexSpinner = (Spinner)findViewById(R.id.spinner_gender);
+        ageSpinner = (Spinner)findViewById(R.id.spinner_age);
+        SignupButton = findViewById(R.id.signup_button);
+
         SignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name=NickNameEditText.getText().toString();
                 String password=PasswordEditText.getText().toString();
-                int result=RequestSignup(name,password);
+                String sex = sexSpinner.getSelectedItem().toString();
+                Long age = Long.parseLong(ageSpinner.getSelectedItem().toString());
 
+
+                int result=RequestSignup(name, password, sex, age);
+                Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -60,7 +86,43 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    private int RequestSignup(String name, String password){
+    private int RequestSignup(String name, String password, String sex, Long age){
+        String phone_num = "010-1234-1234";
+        Character csex = 'm';
+
+        if (sex.equals("남")) {
+            csex = 'm';
+        }
+        else if(sex.equals("여")) {
+            csex = 'w';
+        }
+
+        UserDto dto = new UserDto(name, csex, age, phone_num, password);
+
+
+        // 서버 주소 설정
+        RetrofitClient client = new RetrofitClient();
+        Retrofit retrofit = client.getClient();
+        apiService api = retrofit.create(apiService.class);
+
+
+
+        api.register(dto).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.d("response", response.toString());
+                Log.d("성송","성공");
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("call", call.toString());
+                Log.d("response", t.toString());
+                Log.d("실패","실패");
+            }
+        });
+
+
         return 0;
 
     }
@@ -75,3 +137,4 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 }
+
