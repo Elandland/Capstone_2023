@@ -11,19 +11,19 @@
 
     <string-array name="age">
         <item>선택</item>
-        <item>18세</item>
-        <item>19세</item>
-        <item>20세</item>
-        <item>21세</item>
-        <item>22세</item>
-        <item>23세</item>
-        <item>24세</item>
-        <item>25세</item>
-        <item>26세</item>
-        <item>27세</item>
-        <item>28세</item>
-        <item>29세</item>
-        <item>30세</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
     </string-array>
 
 </resources>
