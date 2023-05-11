@@ -1,23 +1,28 @@
-package Team.server.service.dto;
+package ac.kr.dankook.client.connect;
+
+import com.google.gson.annotations.SerializedName;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
-@Getter
 @Setter
+@Getter
 public class UserDto {
 
+    @SerializedName("name")
     private String name;
 
+    @SerializedName("sex")
     private Character sex;
 
+    @SerializedName("age")
     private Long age;
 
+    @SerializedName("phone_num")
     private String phone_num;
 
+    @SerializedName("password")
     private String password;
 
     @Builder
@@ -28,5 +33,4 @@ public class UserDto {
         this.phone_num = phone_num;
         this.password = password;
     }
-
 }

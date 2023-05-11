@@ -117,9 +117,14 @@
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/login_edit_text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
 
 
+                android:paddingLeft="20dp"
+                android:labelFor="@+id/login_id_editText"
                 android:hint="아이디를 입력하세요"
+                android:theme="@style/Theme.MaterialComponents.Light"
 
                 app:layout_constraintHeight_percent="1"
                 app:layout_constraintWidth_percent="1">
@@ -175,9 +180,13 @@
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/login_edit_text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
 
-
+                android:paddingLeft="20dp"
+                android:labelFor="@+id/login_password_editText"
                 android:hint="비밀번호를 입력하세요"
+                android:theme="@style/Theme.MaterialComponents.Light"
 
                 android:inputType="textPassword"
                 app:layout_constraintHeight_percent="1"

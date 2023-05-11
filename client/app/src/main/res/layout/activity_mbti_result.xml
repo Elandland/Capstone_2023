@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context="">
+    tools:context=".MbtiTestActivity1">
 
     <TextView
         android:fontFamily="@font/bmjua_ttf"
@@ -53,8 +53,13 @@
 <!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent"-->
+
 <!--            app:layout_constraintVertical_bias="0.05">-->
 <!--            app:layout_constraintWidth_percent="0.3"-->
+=======
+<!--            app:layout_constraintVertical_bias="0.05"-->
+<!--            app:layout_constraintWidth_percent="0.3">-->
+
 
 <!--        </de.hdodenhof.circleimageview.CircleImageView>-->
 

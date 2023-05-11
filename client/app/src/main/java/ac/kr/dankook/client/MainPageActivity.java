@@ -71,17 +71,21 @@ public class MainPageActivity extends Activity {
             }
         });
 
-        // 진동 효과
-        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        Boolean check = false;
+        if (check == true) {
+            // 진동 효과
+            Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
-        long[] vibratePattern = new long[]{1000, 500};
-        int repeat = 1;
+            long[] vibratePattern = new long[]{1000, 500};
+            int repeat = 1;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, repeat));
-        } else {
-            vibrator.vibrate(vibratePattern, repeat);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(vibratePattern, repeat));
+            } else {
+                vibrator.vibrate(vibratePattern, repeat);
+            }
         }
+
 
     }
 }

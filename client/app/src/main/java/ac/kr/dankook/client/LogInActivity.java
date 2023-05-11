@@ -30,6 +30,7 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
         LoadViewById();
 
+        // login시 id password 가져오기
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +38,10 @@ public class LogInActivity extends AppCompatActivity {
                 String id=mIdEditText.getText().toString();
                 String password=mPassWordEditText.getText().toString();
                 int result=RequestLogin(id,password);
+
+                // login 성공 시, main activity로 이동
+                Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -50,11 +55,13 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-
+    // 로그인
     private int RequestLogin(String id, String password){
 
         return 0;
     }
+
+    // 누락 값 확인
     private void LoadViewById(){
         if(mSignUpText == null){
             mSignUpText = findViewById(R.id.signup_text);

@@ -5,12 +5,20 @@ import Team.server.service.UserService;
 import Team.server.service.dto.UserDto;
 import Team.server.service.dto.UserDtoConverter;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+// 로그인 회원가입 관련 controller
 
 @Controller
 @RequiredArgsConstructor
@@ -19,24 +27,25 @@ public class HomeController {
 
     private final UserService userService;
 
+    // 회원가입
     @GetMapping("/register")        // /users/register로 이동할 시
-    public String registForm(@ModelAttribute UserDto userDto){
-            return "/users/register";
+    public ResponseEntity<String> registForm(@ModelAttribute UserDto userDto){
+            return ResponseEntity.ok("false");
     }
 
-
-
     @PostMapping("/register")
-    public String save(@Valid @ModelAttribute UserDtoConverter userDtoConverter, BindingResult result) throws Exception {
+    public ResponseEntity<String> register(@Valid @ModelAttribute UserDto userdto, BindingResult result) throws Exception {
+        System.out.println(userdto.getName());
         if(result.hasErrors()){
-            return "/users/register";    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
+            return ResponseEntity.ok("fail");    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
+            
         }
         else{
-            if(userService.signupCheck(userDtoConverter)){
-                userService.signup(userDtoConverter);
+            if(userService.signupCheck(userdto)){
+                userService.signup(userdto);
             }
-        }
-        return "redirect:/";        //저장되면 메인 페이지로로
+        }                                                                                                                           
+        return ResponseEntity.ok("ok!");        //저장되면 메인 페이지로로
 
     }
 
@@ -47,11 +56,8 @@ public class HomeController {
         int count = userService.studentIdCheck(userDtoConverter.getStudentId());
         return count;
     }
-
-
     */
 
-
-
+    // 로그인
 
 }
