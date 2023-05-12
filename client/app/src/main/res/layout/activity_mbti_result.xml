@@ -39,24 +39,24 @@
         app:layout_constraintTop_toBottomOf="@+id/MBTI_Result_page_main_text"
         app:layout_constraintWidth_percent="0.8">
 
-<!--        <de.hdodenhof.circleimageview.CircleImageView-->
-<!--            android:id="@+id/circleImageView"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:background=""-->
-<!--            android:elevation="1dp"-->
-<!--            android:src="@drawable/intp_image"-->
-<!--            app:civ_border_overlay="true"-->
-<!--            app:civ_border_width="0dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintDimensionRatio="1"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.05"-->
-<!--            app:layout_constraintWidth_percent="0.3">-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mbti_result_imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/intp_image"
 
-<!--        </de.hdodenhof.circleimageview.CircleImageView>-->
+
+            app:civ_border_overlay="true"
+            app:civ_border_width="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintWidth_percent="0.3">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
@@ -73,7 +73,7 @@
 
 
             <TextView
-                android:fontFamily="@font/abeezee_regular"
+                android:fontFamily="@font/ABeeZee_regular"
                 android:textColor="@color/black"
                 android:id="@+id/user_mbti_text_in_mbti_result_page"
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             </View>
 
             <TextView
-                android:fontFamily="@font/abeezee_regular"
+                android:fontFamily="@font/ABeeZee_regular"
                 android:textColor="@color/black"
                 android:id="@+id/mbti_explain_text_in_mbti_result_page"
                 android:layout_width="0dp"
@@ -133,7 +133,7 @@
             app:layout_constraintHeight_percent="0.3">
 
             <TextView
-                android:fontFamily="@font/abeezee_regular"
+                android:fontFamily="@font/ABeeZee_regular"
                 android:textColor="@color/black"
                 android:id="@+id/mbti_compatibility_textView"
                 android:layout_width="match_parent"
@@ -163,7 +163,7 @@
                 app:layout_constraintWidth_percent="0.48">
 
                 <TextView
-                    android:fontFamily="@font/abeezee_regular"
+                    android:fontFamily="@font/ABeeZee_regular"
                     android:id="@+id/good_mbti_compatibility_textView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -180,7 +180,8 @@
 
 
                 <TextView
-                    android:fontFamily="@font/abeezee_regular"
+                    android:id="@+id/mbti_result_good_textview0"
+                    android:fontFamily="@font/ABeeZee_regular"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -191,6 +192,22 @@
                     app:layout_constraintHeight_percent="0.2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/good_mbti_compatibility_textView">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/mbti_result_good_textview1"
+                    android:fontFamily="@font/ABeeZee_regular"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:text="ISFJ"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mbti_result_good_textview0">
 
                 </TextView>
 
@@ -218,7 +235,7 @@
                 app:layout_constraintWidth_percent="0.48">
 
                 <TextView
-                    android:fontFamily="@font/abeezee_regular"
+                    android:fontFamily="@font/ABeeZee_regular"
                     android:id="@+id/bad_mbti_compatibility_textView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -235,7 +252,7 @@
 
 
                 <TextView
-                    android:fontFamily="@font/abeezee_regular"
+                    android:fontFamily="@font/ABeeZee_regular"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
