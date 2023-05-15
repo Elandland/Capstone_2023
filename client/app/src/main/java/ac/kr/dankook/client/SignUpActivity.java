@@ -13,14 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
+import java.io.IOException;
+
 import ac.kr.dankook.client.connect.RetrofitClient;
-import ac.kr.dankook.client.connect.UserDto;
 import ac.kr.dankook.client.connect.apiService;
+import Team.server.service.dto.UserDto;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -33,6 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
     private Spinner ageSpinner;
 
     private Button SignupButton;
+
+    public boolean isit = false;
 
     //체크박스 체크 여부 no check=0, check=1
     private int TermsAgree0=0;
@@ -75,10 +81,20 @@ public class SignUpActivity extends AppCompatActivity {
                 String sex = sexSpinner.getSelectedItem().toString();
                 Long age = Long.parseLong(ageSpinner.getSelectedItem().toString());
 
+                int result = -1;
 
-                int result=RequestSignup(name, password, sex, age);
-                Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
-                startActivity(intent);
+                try {
+                    result = RequestSignup(name, password, sex, age);
+                } catch (IOException e) {
+                    // 예외 처리 코드 작성
+                }
+
+                if (result == 1) {
+                    Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
+                    startActivity(intent);
+                }
+
+
             }
         });
 
@@ -86,8 +102,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    private int RequestSignup(String name, String password, String sex, Long age){
-        String phone_num = "010-1234-1234";
+    private int RequestSignup(String name, String password, String sex, Long age) throws IOException {
+
+        String phone_num = "01012341234";
         Character csex = 'm';
 
         if (sex.equals("남")) {
@@ -106,24 +123,39 @@ public class SignUpActivity extends AppCompatActivity {
         apiService api = retrofit.create(apiService.class);
 
 
+//        api.register(dto).enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                Log.d("response", response.toString());
+//                Log.d("성송","성공");
+//                isit = true;
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Log.d("call", call.toString());
+//                Log.d("response", t.toString());
+//                Log.d("실패","실패");
+//                isit = false;
+//            }
+//        });
 
-        api.register(dto).enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.d("response", response.toString());
-                Log.d("성송","성공");
-            }
+        Call<String> call = api.register(dto);
+        Response<String> response = call.execute();
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d("call", call.toString());
-                Log.d("response", t.toString());
-                Log.d("실패","실패");
-            }
-        });
+        if(response.isSuccessful()) {
+            Log.d("response", response.toString());
+            Log.d("성공", "성공");
+            return 1; // 회원가입 성공
+        }
+        else {
+            Log.d("response", response.toString());
+            Log.d("실패", "실패");
+            return -1; // 회원가입 실패
+        }
 
 
-        return 0;
+
 
     }
     private void LoadViewById(){

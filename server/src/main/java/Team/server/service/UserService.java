@@ -20,6 +20,8 @@ public class UserService {
 
     public boolean signupCheck(UserDto userdto) {         //dto로 받아서 중복 체크함
 
+        System.out.println(userdto.getName());
+
         User findUser = userRepository.findByName(userdto.getName());
 
         if (findUser == null) {     // 이름 같은거 없으면 중복 아님.
@@ -36,6 +38,7 @@ public class UserService {
         //user data 불러옴
 
         User user = userDtoConverter.fromUserDto(userdto);
+        System.out.println(user.getName());
         
         return userRepository.save(user).getId();
 

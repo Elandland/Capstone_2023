@@ -25,6 +25,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'notice.txt'
+        exclude 'license.txt'
+        exclude 'META-INF/*'
+    }
 }
 
 dependencies {
@@ -49,5 +54,17 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
+    // 외부 프로젝트
+    implementation project(':Team')
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.0'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.27'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.0'
+    // implementation 'org.springframework.boot:spring-boot-starter-security:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.0'
+
+    // spring implement 필요
 
 }
