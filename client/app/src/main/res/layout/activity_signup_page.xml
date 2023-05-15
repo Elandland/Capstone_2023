@@ -105,11 +105,13 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
 
-
+                android:paddingLeft="20dp"
+                android:labelFor="@+id/signup_nickname_editText"
                 android:hint="닉네임을 입력하세요"
+                android:theme="@style/Theme.MaterialComponents.Light"
 
                 app:layout_constraintHeight_percent="1"
-                app:layout_constraintWidth_percent="1">
+                app:layout_constraintWidth_percent="1" >
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -259,10 +261,15 @@
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/login_edit_text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
 
+                android:paddingLeft="20dp"
+                android:labelFor="@+id/signup_password_editText"
 
                 android:hint="비밀번호를 입력하세요"
 
+                android:theme="@style/Theme.MaterialComponents.Light"
                 app:layout_constraintHeight_percent="1"
                 app:layout_constraintWidth_percent="1">
 
