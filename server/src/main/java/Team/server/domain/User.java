@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class User {
@@ -28,10 +30,10 @@ public class User {
     private String name;
 
     @Column(name = "Sex")
-    private Character sex;
+    private String sex;
 
     @Column(name = "Age")
-    private Long age;
+    private int age;
 
     @Column(name = "Phone_num")
     private String phone_num;
@@ -40,7 +42,7 @@ public class User {
     private String password;
 
     @Builder
-    public User(String name, Character sex ,Long age, String phone_num ,String password){
+    public User(String name, String sex ,int age, String phone_num ,String password){
         this.name = name;
         this.sex = sex;
         this.age = age;

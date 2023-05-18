@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,11 +65,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup_page);
         LoadViewById();
 
-
-
-
-
-
         sexSpinner = (Spinner)findViewById(R.id.spinner_gender);
         ageSpinner = (Spinner)findViewById(R.id.spinner_age);
         SignupButton = findViewById(R.id.signup_button);
@@ -76,50 +72,67 @@ public class SignUpActivity extends AppCompatActivity {
         SignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=NickNameEditText.getText().toString();
-                String password=PasswordEditText.getText().toString();
-                String sex = sexSpinner.getSelectedItem().toString();
-                Long age = Long.parseLong(ageSpinner.getSelectedItem().toString());
+                // 클릭 이벤트 발생 시 백그라운드 스레드에서 작업 실행
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String name = NickNameEditText.getText().toString();
+                        String password = PasswordEditText.getText().toString();
+                        String sex = sexSpinner.getSelectedItem().toString();
+                        int age = Integer.parseInt(ageSpinner.getSelectedItem().toString());
 
-                int result = -1;
+                        int result = -1;
 
-                try {
-                    result = RequestSignup(name, password, sex, age);
-                } catch (IOException e) {
-                    // 예외 처리 코드 작성
-                }
+                        try {
+                            result = RequestSignup(name, password, sex, age);
+                        } catch (IOException e) {
+                            // 예외 처리 코드 작성
+                        }
+                        Log.d("result", String.valueOf(result));
+                        if (result == 1) {
+                            // 메인(UI) 스레드에서 UI 업데이트 작업 실행
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                });
 
-                if (result == 1) {
-                    Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
-                    startActivity(intent);
-                }
-
-
+                thread.start(); // 백그라운드 스레드 시작
             }
         });
+
 
 
     }
 
 
-    private int RequestSignup(String name, String password, String sex, Long age) throws IOException {
+    private int RequestSignup(String name, String password, String sex, int age) throws IOException {
+
 
         String phone_num = "01012341234";
-        Character csex = 'm';
 
         if (sex.equals("남")) {
-            csex = 'm';
+            sex = "m";
         }
         else if(sex.equals("여")) {
-            csex = 'w';
+            sex = "w";
         }
 
-        UserDto dto = new UserDto(name, csex, age, phone_num, password);
+        Log.d("name", name);
+        Log.d("password", password);
+        Log.d("sex", String.valueOf(sex));
+        Log.d("age",String.valueOf(age));
+
+        UserDto dto = new UserDto(name, sex, age, phone_num, password);
 
 
         // 서버 주소 설정
-        RetrofitClient client = new RetrofitClient();
-        Retrofit retrofit = client.getClient();
+        Retrofit retrofit = RetrofitClient.getClient();
         apiService api = retrofit.create(apiService.class);
 
 
