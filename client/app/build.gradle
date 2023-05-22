@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "ac.kr.dankook.client"
@@ -30,12 +30,15 @@ android {
         exclude 'license.txt'
         exclude 'META-INF/*'
     }
+
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+
     implementation 'com.airbnb.android:lottie:5.2.0'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+//    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.preference:preference:1.1.1"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -55,7 +58,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     // 외부 프로젝트
-    implementation project(':Team')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.0'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.0'

@@ -18,7 +18,7 @@ import java.io.IOException;
 
 import ac.kr.dankook.client.connect.RetrofitClient;
 import ac.kr.dankook.client.connect.apiService;
-import Team.server.service.dto.UserDto;
+//import Team.server.service.dto.UserDto;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
         Log.d("sex", String.valueOf(sex));
         Log.d("age",String.valueOf(age));
 
-        UserDto dto = new UserDto(name, sex, age, phone_num, password);
+//        UserDto dto = new UserDto(name, sex, age, phone_num, password);
 
 
         // 서버 주소 설정
@@ -153,7 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Call<String> call = api.register(dto);
+        Call<String> call = api.register(name, sex, age, phone_num, password);
         Response<String> response = call.execute();
 
         if(response.isSuccessful()) {
