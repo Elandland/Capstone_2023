@@ -73,7 +73,7 @@
 
 
             <TextView
-                android:fontFamily="@font/ABeeZee_regular"
+                android:fontFamily="@font/abeezee_regular"
                 android:textColor="@color/black"
                 android:id="@+id/user_mbti_text_in_mbti_result_page"
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             </View>
 
             <TextView
-                android:fontFamily="@font/ABeeZee_regular"
+                android:fontFamily="@font/abeezee_regular"
                 android:textColor="@color/black"
                 android:id="@+id/mbti_explain_text_in_mbti_result_page"
                 android:layout_width="0dp"
@@ -133,7 +133,7 @@
             app:layout_constraintHeight_percent="0.3">
 
             <TextView
-                android:fontFamily="@font/ABeeZee_regular"
+                android:fontFamily="@font/abeezee_regular"
                 android:textColor="@color/black"
                 android:id="@+id/mbti_compatibility_textView"
                 android:layout_width="match_parent"
@@ -163,7 +163,7 @@
                 app:layout_constraintWidth_percent="0.48">
 
                 <TextView
-                    android:fontFamily="@font/ABeeZee_regular"
+                    android:fontFamily="@font/abeezee_regular"
                     android:id="@+id/good_mbti_compatibility_textView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -181,7 +181,7 @@
 
                 <TextView
                     android:id="@+id/mbti_result_good_textview0"
-                    android:fontFamily="@font/ABeeZee_regular"
+                    android:fontFamily="@font/abeezee_regular"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -197,7 +197,7 @@
 
                 <TextView
                     android:id="@+id/mbti_result_good_textview1"
-                    android:fontFamily="@font/ABeeZee_regular"
+                    android:fontFamily="@font/abeezee_regular"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -235,7 +235,7 @@
                 app:layout_constraintWidth_percent="0.48">
 
                 <TextView
-                    android:fontFamily="@font/ABeeZee_regular"
+                    android:fontFamily="@font/abeezee_regular"
                     android:id="@+id/bad_mbti_compatibility_textView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -252,7 +252,7 @@
 
 
                 <TextView
-                    android:fontFamily="@font/ABeeZee_regular"
+                    android:fontFamily="@font/abeezee_regular"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
