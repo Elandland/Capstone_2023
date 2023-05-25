@@ -8,3 +8,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "client"
 include ':app'
+
+// 외부 프로젝트 불러오기
+//include ':Team'
+//project(':Team').projectDir = new File("D:/Capstone_2023/Capstone_2023/server")
