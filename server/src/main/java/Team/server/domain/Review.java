@@ -23,8 +23,11 @@ public class Review {
     @Column(name = "Regdate")
     private LocalDate regdate;
 
-    @Column(name = "Email")
-    private String email;
+    @Column(name = "Phone_num")     //누가 썼는지
+    private String phone_num;
+
+    @Column(name = "Target_num")          //누굴 대상으로 하는지
+    private String target_num;
 
     @Column(name = "Rating")
     private Long rating;
