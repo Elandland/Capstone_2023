@@ -356,8 +356,7 @@
                     android:layout_height="20dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="개인정보 수집 및 동의" >
-                </CheckBox>
+                    android:text="개인정보 수집 및 동의"></CheckBox>
 
             </RelativeLayout>
             <RelativeLayout
@@ -371,8 +370,7 @@
                     android:layout_height="20dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="위기반 서비스 이용 약관 동의" >
-                </CheckBox>
+                    android:text="위기반 서비스 이용 약관 동의"></CheckBox>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"

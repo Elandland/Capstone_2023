@@ -16,6 +16,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+
 public class MapPageActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
@@ -55,17 +56,14 @@ public class MapPageActivity extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(final GoogleMap googleMap) {
         map = googleMap;
 
-        LatLng SEOUL = new LatLng(37.56, 126.97);
-        googleMap.addMarker(new MarkerOptions().position(SEOUL).title("Marker in Seoul"));
+        LatLng seoul = new LatLng(37.56, 126.97);
 
-        /* 마커
-        MarkerOptions markerOptions = new MarkerOptions();         // 마커
-        markerOptions.position(SEOUL);
-        markerOptions.title("서울");                 // 마커 제목
-        markerOptions.snippet("한국의 수도");         // 마커 설명
-        map.addMarker(markerOptions);
-        */
+        MarkerOptions options = new MarkerOptions();
+        options.position(seoul)
+                .title("서울")
+                .snippet("한국의 수도");
+        map.addMarker(options);
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL)); // 초기 위치
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 18));
     }
 }

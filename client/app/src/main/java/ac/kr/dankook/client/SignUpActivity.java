@@ -135,24 +135,6 @@ public class SignUpActivity extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getClient();
         apiService api = retrofit.create(apiService.class);
 
-
-//        api.register(dto).enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                Log.d("response", response.toString());
-//                Log.d("성송","성공");
-//                isit = true;
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                Log.d("call", call.toString());
-//                Log.d("response", t.toString());
-//                Log.d("실패","실패");
-//                isit = false;
-//            }
-//        });
-
         Call<String> call = api.register(name, sex, age, phone_num, password);
         Response<String> response = call.execute();
 
