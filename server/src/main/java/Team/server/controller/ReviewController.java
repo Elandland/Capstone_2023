@@ -15,9 +15,12 @@ public class ReviewController {
     private final ReviewService reviewService;
 
 
+
     @DeleteMapping("/review/{no}")
     public String delete(@PathVariable("no") Long rid) throws Exception {
-    reviewService.removereview(rid);
+    reviewService.removeReview(rid);
+
+
 
     return "/review";
 }
