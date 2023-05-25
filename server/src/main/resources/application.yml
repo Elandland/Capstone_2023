@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ts_db?serverTimezone=Asia/Seoul
     username: root
-    password: ''
+    password: '2077'
   jpa:
     hibernate:
       ddl-auto: none

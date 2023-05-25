@@ -1,6 +1,7 @@
 package Team.server.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,7 @@ public class Review {
     @Id //기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Re_id")
-    private Long re_id;       //reveiw 글 id
+    private Long rid;       //reveiw 글 id
 
     @Column(name = "Content",nullable = false,length = 50)
     private String content;
@@ -23,11 +24,22 @@ public class Review {
     @Column(name = "Regdate")
     private LocalDate regdate;
 
-    @Column(name = "Email")
-    private String email;
+    @Column(name = "Phone_num")     //누가 썼는지
+    private String phonenum;
+
+    @Column(name = "Target_num")          //누굴 대상으로 하는지
+    private String target_num;
 
     @Column(name = "Rating")
-    private Long rating;
+    private int rating;
 
 
+    @Builder
+    public Review(String content,LocalDate regdate , String phonenum, String target_num , int rating){
+        this.content = content;
+        this.regdate = regdate;
+        this.phonenum = phonenum;
+        this.target_num = target_num;
+        this.rating = rating;
+    }
 }

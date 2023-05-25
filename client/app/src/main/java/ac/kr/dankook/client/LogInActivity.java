@@ -102,7 +102,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     // 누락 값 확인
-    private void LoadViewById(){ 
+    private void LoadViewById(){
         if(mSignUpText == null){
             mSignUpText = findViewById(R.id.signup_text);
             assert mSignUpText != null : "fail load signUpText";
