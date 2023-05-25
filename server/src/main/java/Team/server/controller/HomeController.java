@@ -35,7 +35,6 @@ public class HomeController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @ModelAttribute UserDto userdto, BindingResult result) throws Exception {
-        System.out.println(userdto.getName());
         if(result.hasErrors()){
             return ResponseEntity.ok("fail");    //회원가입 정보 이상하면 회원가입 페이지로 다시 리다이렉트
             

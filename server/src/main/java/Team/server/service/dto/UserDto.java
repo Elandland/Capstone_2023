@@ -29,45 +29,4 @@ public class UserDto {
         this.password = password;
     }
 
-     // Getter 메소드
-     public String getName() {
-        return name;
-    }
-    
-    public String getSex() {
-        return sex;
-    }
-    
-    public int getAge() {
-        return age;
-    }
-    
-    public String getPhoneNum() {
-        return phone_num;
-    }
-    
-    public String getPassword() {
-        return password;
-    }
-    
-    // Setter 메소드
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-    
-    public void setAge(int age) {
-        this.age = age;
-    }
-    
-    public void setPhoneNum(String phone_num) {
-        this.phone_num = phone_num;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

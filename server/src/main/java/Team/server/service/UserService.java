@@ -38,7 +38,6 @@ public class UserService {
         //user data 불러옴
 
         User user = userDtoConverter.fromUserDto(userdto);
-        System.out.println(user.getName());
         
         return userRepository.save(user).getId();
 
