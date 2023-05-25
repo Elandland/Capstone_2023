@@ -5,7 +5,6 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-//import Team.server.service.dto.UserDto;
 
 public interface apiService {
     @FormUrlEncoded
@@ -15,6 +14,13 @@ public interface apiService {
             @Field("sex") String sex,
             @Field("age") int age,
             @Field("phone_num") String phone_num,
+            @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @POST("/users/login")
+    Call<String> login(
+            @Field("name") String name,
             @Field("password") String password
     );
 }

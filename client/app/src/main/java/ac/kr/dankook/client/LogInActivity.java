@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,6 +14,14 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+
+import ac.kr.dankook.client.connect.RetrofitClient;
+import ac.kr.dankook.client.connect.apiService;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -34,14 +43,34 @@ public class LogInActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String name = mIdEditText.getText().toString();
+                        String password=mPassWordEditText.getText().toString();
 
-                String id=mIdEditText.getText().toString();
-                String password=mPassWordEditText.getText().toString();
-                int result=RequestLogin(id,password);
+                        int result = -1;
 
-                // login 성공 시, main activity로 이동
-                Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
-                startActivity(intent);
+                        try {
+                            result=RequestLogin(name,password);
+                        } catch (IOException e) {
+                            // 예외 처리 코드 작성
+                        }
+                        Log.d("result", String.valueOf(result));
+                        if (result == 1) {
+                            // 메인(UI) 스레드에서 UI 업데이트 작업 실행
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                thread.start();
 
             }
         });
@@ -56,9 +85,20 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     // 로그인
-    private int RequestLogin(String id, String password){
+    private int RequestLogin(String name, String password) throws IOException {
 
-        return 0;
+        Retrofit retrofit = RetrofitClient.getClient();
+        apiService api = retrofit.create(apiService.class);
+
+        Call<String> call = api.login(name, password);
+        Response<String> response = call.execute();
+
+        if(response.isSuccessful()) {
+            return 1;
+        }
+        else {
+            return -1;
+        }
     }
 
     // 누락 값 확인

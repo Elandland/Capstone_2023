@@ -33,7 +33,8 @@
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_phoneauthentication_page.xml" value="0.33" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_popup_loading.xml" value="0.135" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_profile_page.xml" value="0.3619791666666667" />
-        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_review_page.xml" value="0.18802083333333333" />
+        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_review_page.xml" value="0.25" />
+        <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_reviewnext_page.xml" value="0.18478260869565216" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_signup_page.xml" value="0.33" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/activity_start_page.xml" value="0.1" />
         <entry key="..\:/Capstone_2023/Capstone_2023/client/app/src/main/res/layout/edit_introduce_myself_dialog.xml" value="0.3619791666666667" />
@@ -44,7 +45,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
