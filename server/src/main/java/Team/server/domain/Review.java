@@ -15,7 +15,7 @@ public class Review {
 
     @Id //기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Re_id")
+    @Column(name = "Rid")
     private Long rid;       //reveiw 글 id
 
     @Column(name = "Content",nullable = false,length = 50)
@@ -24,22 +24,22 @@ public class Review {
     @Column(name = "Regdate")
     private LocalDate regdate;
 
-    @Column(name = "Phone_num")     //누가 썼는지
+    @Column(name = "Phonenum")     //누가 썼는지
     private String phonenum;
 
-    @Column(name = "Target_num")          //누굴 대상으로 하는지
-    private String target_num;
+    @Column(name = "Targetnum")          //누굴 대상으로 하는지
+    private String targetnum;
 
     @Column(name = "Rating")
     private int rating;
 
 
     @Builder
-    public Review(String content,LocalDate regdate , String phonenum, String target_num , int rating){
+    public Review(String content,LocalDate regdate , String phonenum, String targetnum , int rating){
         this.content = content;
         this.regdate = regdate;
         this.phonenum = phonenum;
-        this.target_num = target_num;
+        this.targetnum = targetnum;
         this.rating = rating;
     }
 }

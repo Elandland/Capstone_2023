@@ -11,7 +11,7 @@ public class ReviewDtoConverter {
                 .content(dto.getContent())
                 .regdate(dto.getRegdate())
                 .phonenum(dto.getPhonenum())
-                .target_num(dto.getTarget_num())
+                .targetnum(dto.getTargetnum())
                 .rating(dto.getRating())
                 .build();
     }

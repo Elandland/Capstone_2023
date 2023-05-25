@@ -17,16 +17,16 @@ public class ReviewDto {
 
     private String phonenum;
 
-    private String target_num;
+    private String targetnum;
 
     private int rating;
 
     @Builder
-    public ReviewDto(String content,LocalDate regdate , String phonenum, String target_num , int rating){
+    public ReviewDto(String content,LocalDate regdate , String phonenum, String targetnum , int rating){
         this.content = content;
         this.regdate = regdate;
         this.phonenum = phonenum;
-        this.target_num = target_num;
+        this.targetnum = targetnum;
         this.rating = rating;
     }
 

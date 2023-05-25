@@ -11,7 +11,7 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review,Long> {
     public void deleteByRid(Long rid);
 
-    List<Review> findByPhonenumContaining(String phone_num);
+    List<Review> findByPhonenum(String phonenum);
     public Review findByRid(Long rid);
 
 }

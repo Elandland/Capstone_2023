@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,19 +34,6 @@ public class ReviewService {
         }
         return false;
     }
-
-    /*
-    public List<ReviewDto> searchReviewByPhonenum(String phone){
-        List<Review> reviewList = this.reviewRepository.findByPhoneContaining(phone);
-        if (reviewList == null || reviewList.isEmpty())
-            // 찾지 못할 경우 RuntimeException 던져주기
-            throw new RuntimeException();
-        return reviewList.stream()
-                .map(ReviewDtoConverter::fromReviewDto)
-                .collect(Collectors.toList());
-
-    }
-    */
 
 
 }
