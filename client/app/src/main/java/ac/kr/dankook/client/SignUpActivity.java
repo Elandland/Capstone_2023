@@ -8,19 +8,24 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
+import java.io.IOException;
+
 import ac.kr.dankook.client.connect.RetrofitClient;
-import ac.kr.dankook.client.connect.UserDto;
 import ac.kr.dankook.client.connect.apiService;
+//import Team.server.service.dto.UserDto;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -33,6 +38,8 @@ public class SignUpActivity extends AppCompatActivity {
     private Spinner ageSpinner;
 
     private Button SignupButton;
+
+    public boolean isit = false;
 
     //체크박스 체크 여부 no check=0, check=1
     private int TermsAgree0=0;
@@ -58,11 +65,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup_page);
         LoadViewById();
 
-
-
-
-
-
         sexSpinner = (Spinner)findViewById(R.id.spinner_gender);
         ageSpinner = (Spinner)findViewById(R.id.spinner_age);
         SignupButton = findViewById(R.id.signup_button);
@@ -70,60 +72,103 @@ public class SignUpActivity extends AppCompatActivity {
         SignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=NickNameEditText.getText().toString();
-                String password=PasswordEditText.getText().toString();
-                String sex = sexSpinner.getSelectedItem().toString();
-                Long age = Long.parseLong(ageSpinner.getSelectedItem().toString());
+                // 클릭 이벤트 발생 시 백그라운드 스레드에서 작업 실행
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String name = NickNameEditText.getText().toString();
+                        String password = PasswordEditText.getText().toString();
+                        String sex = sexSpinner.getSelectedItem().toString();
+                        int age = Integer.parseInt(ageSpinner.getSelectedItem().toString());
 
+                        int result = -1;
 
-                int result=RequestSignup(name, password, sex, age);
-                Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
-                startActivity(intent);
+                        try {
+                            result = RequestSignup(name, password, sex, age);
+                        } catch (IOException e) {
+                            // 예외 처리 코드 작성
+                        }
+                        Log.d("result", String.valueOf(result));
+                        if (result == 1) {
+                            // 메인(UI) 스레드에서 UI 업데이트 작업 실행
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent=new Intent(getApplicationContext(), LogInActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                thread.start(); // 백그라운드 스레드 시작
             }
         });
+
 
 
     }
 
 
-    private int RequestSignup(String name, String password, String sex, Long age){
-        String phone_num = "010-1234-1234";
-        Character csex = 'm';
+    private int RequestSignup(String name, String password, String sex, int age) throws IOException {
+
+
+        String phone_num = "01012341234";
 
         if (sex.equals("남")) {
-            csex = 'm';
+            sex = "m";
         }
         else if(sex.equals("여")) {
-            csex = 'w';
+            sex = "w";
         }
 
-        UserDto dto = new UserDto(name, csex, age, phone_num, password);
+        Log.d("name", name);
+        Log.d("password", password);
+        Log.d("sex", String.valueOf(sex));
+        Log.d("age",String.valueOf(age));
+
+//        UserDto dto = new UserDto(name, sex, age, phone_num, password);
 
 
         // 서버 주소 설정
-        RetrofitClient client = new RetrofitClient();
-        Retrofit retrofit = client.getClient();
+        Retrofit retrofit = RetrofitClient.getClient();
         apiService api = retrofit.create(apiService.class);
 
 
+//        api.register(dto).enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                Log.d("response", response.toString());
+//                Log.d("성송","성공");
+//                isit = true;
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Log.d("call", call.toString());
+//                Log.d("response", t.toString());
+//                Log.d("실패","실패");
+//                isit = false;
+//            }
+//        });
 
-        api.register(dto).enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.d("response", response.toString());
-                Log.d("성송","성공");
-            }
+        Call<String> call = api.register(name, sex, age, phone_num, password);
+        Response<String> response = call.execute();
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d("call", call.toString());
-                Log.d("response", t.toString());
-                Log.d("실패","실패");
-            }
-        });
+        if(response.isSuccessful()) {
+            Log.d("response", response.toString());
+            Log.d("성공", "성공");
+            return 1; // 회원가입 성공
+        }
+        else {
+            Log.d("response", response.toString());
+            Log.d("실패", "실패");
+            return -1; // 회원가입 실패
+        }
 
 
-        return 0;
+
 
     }
     private void LoadViewById(){

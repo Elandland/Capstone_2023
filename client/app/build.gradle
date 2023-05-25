@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "ac.kr.dankook.client"
@@ -22,15 +22,23 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
+    packagingOptions {
+        exclude 'notice.txt'
+        exclude 'license.txt'
+        exclude 'META-INF/*'
+    }
+
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+
     implementation 'com.airbnb.android:lottie:5.2.0'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+//    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.preference:preference:1.1.1"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -45,9 +53,24 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+    implementation ('io.socket:engine.io-client:2.1.0') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
     // lombok
     implementation 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
-
-
 }
+
+    // 외부 프로젝트
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.0'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.27'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.0'
+    // implementation 'org.springframework.boot:spring-boot-starter-security:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.0'
+
+    // spring implement 필요
+
