@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review,Long> {
-    public Review deleteByRid(Long rid);
+    public void deleteByRid(Long rid);
 
-    List<Review> findByPhoneContaining(String phone_num);
+    List<Review> findByPhonenumContaining(String phone_num);
     public Review findByRid(Long rid);
 
 }

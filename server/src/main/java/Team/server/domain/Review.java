@@ -25,7 +25,7 @@ public class Review {
     private LocalDate regdate;
 
     @Column(name = "Phone_num")     //누가 썼는지
-    private String phone_num;
+    private String phonenum;
 
     @Column(name = "Target_num")          //누굴 대상으로 하는지
     private String target_num;
@@ -35,10 +35,10 @@ public class Review {
 
 
     @Builder
-    public Review(String content,LocalDate regdate , String phone_num, String target_num , int rating){
+    public Review(String content,LocalDate regdate , String phonenum, String target_num , int rating){
         this.content = content;
         this.regdate = regdate;
-        this.phone_num = phone_num;
+        this.phonenum = phonenum;
         this.target_num = target_num;
         this.rating = rating;
     }

@@ -37,6 +37,7 @@ public class ReviewService {
         return false;
     }
 
+    /*
     public List<ReviewDto> searchReviewByPhonenum(String phone){
         List<Review> reviewList = this.reviewRepository.findByPhoneContaining(phone);
         if (reviewList == null || reviewList.isEmpty())
@@ -46,10 +47,8 @@ public class ReviewService {
                 .map(ReviewDtoConverter::fromReviewDto)
                 .collect(Collectors.toList());
 
-
-
     }
-
+    */
 
 
 }
