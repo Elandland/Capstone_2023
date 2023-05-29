@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +34,8 @@ public class LogInActivity extends AppCompatActivity {
     private EditText mPassWordEditText;
     private Button mLoginButton;
     private CheckBox mCheckBox;
+
+    Toast toast;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,13 +71,35 @@ public class LogInActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
+
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run()
+                                {
+                                    Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
+                                }
+                            }, 0);
+                        }
+                        else {
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run()
+                                {
+                                    toast = Toast.makeText(getApplicationContext(), "유효하지 않은 아이디 혹은 비밀번호 입니다.", Toast.LENGTH_SHORT);
+                                }
+                            }, 0);
+
                         }
                     }
+
                 });
 
                 thread.start();
 
             }
+
         });
         mSignUpText.setOnClickListener(new View.OnClickListener() {
             @Override

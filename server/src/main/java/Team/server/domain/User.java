@@ -41,13 +41,17 @@ public class User {
     @Column(name = "Password")
     private String password;
 
+    @Column(name = "Mbti")
+    private String mbti;
+
     @Builder
-    public User(String name, String sex ,int age, String phone_num ,String password){
+    public User(String name, String sex ,int age, String phone_num ,String password, String Mbti){
         this.name = name;
         this.sex = sex;
         this.age = age;
         this.phone_num = phone_num;
         this.password = password;
+        this.mbti = mbti;
     }
 
     // @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)           //에러뜸 수정해야됨

@@ -17,6 +17,9 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import ac.kr.dankook.client.MBTI_ResultActivity;
+import ac.kr.dankook.client.ProfilePageActivity;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
@@ -69,6 +72,8 @@ public class MainPageActivity extends Activity {
             @Override
             public void onClick(View v) {
                 hart.setPressed(true);
+                Intent intent = new Intent(MainPageActivity.this, MBTI_StartActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -76,6 +81,8 @@ public class MainPageActivity extends Activity {
             @Override
             public void onClick(View v) {
                 profile.setPressed(true);
+                Intent intent = new Intent(MainPageActivity.this, ProfilePageActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -131,8 +138,10 @@ public class MainPageActivity extends Activity {
                 Location location = locationResult.getLastLocation();
 
                 // 위도 경도를 변수에 저장
-                double now1 = location.getLatitude();
-                double now2 = location.getLongitude();
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+
+
             }
         }, null);
     }

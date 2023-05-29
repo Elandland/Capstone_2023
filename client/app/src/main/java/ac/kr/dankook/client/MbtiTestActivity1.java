@@ -70,6 +70,8 @@ public class MbtiTestActivity1 extends Activity {
     private final int QUESTION_COUNT=12;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mbti_test_1);
+
         mCurrentQuestionIndex=0;
         mIsSeletedUpAnswer=new boolean[QUESTION_COUNT];
         mUpAnswerButton=findViewById(R.id.mbti_answer_button_up);
