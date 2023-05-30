@@ -1,23 +1,37 @@
 package Team.server.service;
 
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
+import Team.server.domain.User;
+import Team.server.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class MbtiService {
 
-    // private final UserRepository userRepository;
-    // private final UserDtoConverter userDtoConverter;
+    private final UserRepository userRepository;
 
-    // public boolean signupCheck(UserDto userdto) {         //dto로 받아서 중복 체크함
+    @Transactional
+    public String getMbti(String name) {
+        User findUser = userRepository.findByName(name);
+        if (findUser != null) {
+            return findUser.getMbti();
+        }
+        else {
+            return "null";
+        }
+        
+    }
 
-    //     System.out.println(userdto.getName());
-  
-    //     User findUser = userRepository.findByName(userdto.getName());
-
-    //     if (findUser == null) {     // 이름 같은거 없으면 중복 아님.
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    @Transactional
+    public void setMbti(String name, String mbti) {
+        User findUser = userRepository.findByName(name);
+        Long id = findUser.getId();
+        if(findUser != null) {
+            userRepository.updatePartialUser(id, mbti);
+        }
+    }
 }

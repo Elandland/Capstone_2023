@@ -57,6 +57,10 @@
         <activity android:name=".MainPopupLoadingActivity"
             android:theme="@style/popupTheme" android:screenOrientation="portrait"
             tools:ignore="Instantiatable"></activity>
+
+        <activity android:name=".MbtiPagePopupActivity"
+            android:theme="@style/popupTheme" android:screenOrientation="portrait"
+            tools:ignore="Instantiatable"></activity>
         <!---->
 
         <activity android:name=".ProfilePageActivity"></activity>

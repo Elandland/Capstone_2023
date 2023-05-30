@@ -1,10 +1,15 @@
 package Team.server.controller;
 
 import Team.server.domain.User;
+import Team.server.repository.UserRepository;
 import Team.server.service.UserService;
 import Team.server.service.dto.UserDto;
 import Team.server.service.dto.UserDtoConverter;
 import Team.server.service.dto.loginDto;
+import Team.server.service.dto.mbtiDto;
+
+import Team.server.service.MbtiService;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -31,6 +36,7 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
     private final UserService userService;
+    private final MbtiService mbtiService;
 
     // 회원가입
     @GetMapping("/register")        // /users/register로 이동할 시
@@ -75,7 +81,7 @@ public class HomeController {
             if (login_res == 1) {
                 HttpSession session = request.getSession();
                 session.setAttribute("name", logindto.getName());
-                return ResponseEntity.ok("ok!");
+                return ResponseEntity.ok(session.getId());
             }
             else {
                 System.out.println("login_res 오류");
@@ -85,9 +91,15 @@ public class HomeController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(HttpSession session) {
+    public String dashboard(@RequestHeader("Cookie") String sessionID, HttpServletRequest request) {
         // 세션에서 사용자 정보 가져오기
-        String name = (String) session.getAttribute("name");
+        HttpSession session = request.getSession(false);
+        String name = "";
+
+        if (session != null && session.getId().equals(sessionID)) {
+            name = (String)session.getAttribute("name");
+        }
+        
 
         if (name != null) {
             return name;
@@ -96,6 +108,31 @@ public class HomeController {
             return "no";
         }
     }
+
+    @GetMapping("/mbti")
+    public String mbti(@RequestHeader("name") String name) {
+
+        if (name == null) {
+            return "null";
+        }
+        else {
+            return mbtiService.getMbti(name);
+        }
+    }
+
+    @PostMapping("/mbti")
+    public ResponseEntity<String> setMbti(@Valid @ModelAttribute mbtiDto mbtiDto, HttpServletRequest request, BindingResult result) throws Exception {
+        
+        if(result.hasErrors()) {
+            System.out.println("haserror 오류");
+            return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/").build();
+        }
+        else {
+            mbtiService.setMbti(mbtiDto.getName(), mbtiDto.getMbti());
+            return ResponseEntity.ok("ok");
+        }
+    }
+    
 
 
 }

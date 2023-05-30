@@ -1,7 +1,9 @@
 package ac.kr.dankook.client;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.io.IOException;
+
+import ac.kr.dankook.client.connect.RetrofitClient;
+import ac.kr.dankook.client.connect.apiService;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MbtiTestActivity1 extends Activity {
     int mCurrentQuestionIndex;
@@ -67,6 +77,10 @@ public class MbtiTestActivity1 extends Activity {
 
     ImageView mMBTITestProgressImageView;
 
+    int result;
+
+    String name;
+
     private final int QUESTION_COUNT=12;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,13 +97,75 @@ public class MbtiTestActivity1 extends Activity {
         mDownAnswerButton.setText(DOWN_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mQuestionAnswerTextView.setText(QUESTION_TEXT_ARRAY[mCurrentQuestionIndex]);
 
+        String mbti = "ISFP";
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    result = setMbti(mbti);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(result);
+            }
+        });
+        thread.start();
+
+
+
         SetEvent();
 
     }
 
+    int setMbti(String mbti) throws IOException {
+        Retrofit retrofit = RetrofitClient.getClient();
+        apiService api = retrofit.create(apiService.class);
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    name = getName();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        Call<String> call = api.setMbti(name, mbti);
+        Response<String> response = call.execute();
+
+        if (response.isSuccessful()) {
+            return 1;
+        }
+        else {
+            return -1;
+        }
+    }
+
+    String getName() throws IOException{
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String sessionID = sharedPreferences.getString("sessionID", "");
+
+        Retrofit retrofit = RetrofitClient.getClient();
+        apiService api = retrofit.create(apiService.class);
+
+        Call<String> call = api.getDashboard(sessionID);
+        Response<String> response = call.execute();
+        if(response.isSuccessful()) {
+            return response.body();
+        }
+        else {
+            return "null";
+        }
+    }
+
 
     void LoadMBTI_ResultPage(int mbti){
-        Intent intent=new Intent(getApplicationContext(), MbtiTestActivity1.class);
+        Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
         intent.putExtra("mbti",mbti);
         startActivity(intent);
     }
