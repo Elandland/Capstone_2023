@@ -37,6 +37,7 @@ public class HomeController {
 
     private final UserService userService;
     private final MbtiService mbtiService;
+    private HttpSession session;
 
     // 회원가입
     @GetMapping("/register")        // /users/register로 이동할 시
@@ -79,8 +80,15 @@ public class HomeController {
         else {
             int login_res = userService.login(logindto);
             if (login_res == 1) {
-                HttpSession session = request.getSession();
+                session = request.getSession();
                 session.setAttribute("name", logindto.getName());
+                System.out.println("session 저장 완료");
+                
+                HttpSession session2 = request.getSession(false);
+                // String n = session2.getAttribute("name");
+                // System.out.println("session name "+n);
+
+
                 return ResponseEntity.ok(session.getId());
             }
             else {
@@ -93,13 +101,16 @@ public class HomeController {
     @GetMapping("/dashboard")
     public String dashboard(@RequestHeader("Cookie") String sessionID, HttpServletRequest request) {
         // 세션에서 사용자 정보 가져오기
-        HttpSession session = request.getSession(false);
+        session = request.getSession(false);
         String name = "";
+        System.out.println(sessionID);
+        System.out.println(session.getId());
+        
 
         if (session != null && session.getId().equals(sessionID)) {
             name = (String)session.getAttribute("name");
         }
-        
+        System.out.println("name="+name);
 
         if (name != null) {
             return name;
@@ -110,8 +121,8 @@ public class HomeController {
     }
 
     @GetMapping("/mbti")
-    public String mbti(@RequestHeader("name") String name) {
-
+    public String mbti(@RequestHeader("name") String name, HttpServletRequest request) {
+        System.out.println(name);
         if (name == null) {
             return "null";
         }

@@ -28,7 +28,7 @@ public interface apiService {
     );
 
     @GET("/users/dashboard")
-    Call<String> getDashboard(@Header("session") String sessionID);
+    Call<String> getDashboard(@Header("Cookie") String sessionID);
 
     @GET("/users/mbti")
     Call<String> getMbti(@Header("name") String name);

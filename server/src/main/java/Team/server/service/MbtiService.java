@@ -18,10 +18,11 @@ public class MbtiService {
     public String getMbti(String name) {
         User findUser = userRepository.findByName(name);
         if (findUser != null) {
+            System.out.println("mbtl:"+findUser.getMbti());
             return findUser.getMbti();
         }
         else {
-            return "null";
+            return null;
         }
         
     }

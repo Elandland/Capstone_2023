@@ -144,7 +144,6 @@ public class MainPageActivity extends Activity {
         // get으로 사용자의 mbti 정보 가져오기
 
 
-        Log.d("e", mbti);
 
         if (mbti == null) {
             Log.d("e", "mbti null 이어서 popup넘어감");
@@ -158,9 +157,6 @@ public class MainPageActivity extends Activity {
 
 
     private String getMbti() throws IOException {
-        Retrofit retrofit = RetrofitClient.getClient();
-        apiService api = retrofit.create(apiService.class);
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -173,9 +169,13 @@ public class MainPageActivity extends Activity {
         });
         thread.start();
 
+        Retrofit retrofit = RetrofitClient.getheaderClient("name", name);
+        apiService api = retrofit.create(apiService.class);
+
         Call<String> call = api.getMbti(name);
         Response<String> response = call.execute();
         if(response.isSuccessful()) {
+            Log.d("mbti response",response.body());
             return response.body();
         }
         else {
@@ -184,15 +184,16 @@ public class MainPageActivity extends Activity {
     }
 
     private String getName() throws IOException{
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
         String sessionID = sharedPreferences.getString("sessionID", "");
-
-        Retrofit retrofit = RetrofitClient.getClient();
+        Log.d("sessionid", sessionID);
+        Retrofit retrofit = RetrofitClient.getheaderClient("Cookie", sessionID);
         apiService api = retrofit.create(apiService.class);
 
         Call<String> call = api.getDashboard(sessionID);
         Response<String> response = call.execute();
         if(response.isSuccessful()) {
+            Log.d("name", response.body());
             return response.body();
         }
         else {
