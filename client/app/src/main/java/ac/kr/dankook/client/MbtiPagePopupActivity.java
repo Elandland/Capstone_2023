@@ -29,15 +29,16 @@ public class MbtiPagePopupActivity extends AppCompatActivity {
         yesbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MbtiPagePopupActivity.this,  MBTI_StartActivity.class);
+                Intent intent = new Intent(getApplicationContext(),  MBTI_StartActivity.class);
                 startActivity(intent);
             }
         });
         nobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 앱 종료
-                Runtime.getRuntime().runFinalization();
+                // 로그인으로 이동
+                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(intent);
             }
         });
     }

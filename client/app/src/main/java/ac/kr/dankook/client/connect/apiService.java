@@ -31,12 +31,11 @@ public interface apiService {
     Call<String> getDashboard(@Header("Cookie") String sessionID);
 
     @GET("/users/mbti")
-    Call<String> getMbti(@Header("name") String name);
+    Call<String> getMbti();
 
     @FormUrlEncoded
     @POST("/users/mbti")
     Call<String> setMbti(
-            @Field("name") String name,
             @Field("mbti") String mbti
     );
 

@@ -84,7 +84,7 @@ public class HomeController {
                 session.setAttribute("name", logindto.getName());
                 System.out.println("session 저장 완료");
                 
-                HttpSession session2 = request.getSession(false);
+                System.out.println("저장완료한 id:"+session.getId());
                 // String n = session2.getAttribute("name");
                 // System.out.println("session name "+n);
 
@@ -99,9 +99,8 @@ public class HomeController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(@RequestHeader("Cookie") String sessionID, HttpServletRequest request) {
+    public ResponseEntity<String> dashboard(@RequestHeader("Cookie") String sessionID, HttpServletRequest request) {
         // 세션에서 사용자 정보 가져오기
-        session = request.getSession(false);
         String name = "";
         System.out.println(sessionID);
         System.out.println(session.getId());
@@ -113,33 +112,35 @@ public class HomeController {
         System.out.println("name="+name);
 
         if (name != null) {
-            return name;
+            return ResponseEntity.ok(name);
         } else {
             // 인증되지 않은 사용자일 경우
-            return "no";
+            return ResponseEntity.ok(null);
         }
     }
 
     @GetMapping("/mbti")
-    public String mbti(@RequestHeader("name") String name, HttpServletRequest request) {
-        System.out.println(name);
+    public ResponseEntity<String> mbti(HttpServletRequest request) {
+        String name = (String)session.getAttribute("name");
+        
         if (name == null) {
-            return "null";
+            return ResponseEntity.ok(null);
         }
         else {
-            return mbtiService.getMbti(name);
+            String mbti = mbtiService.getMbti(name);
+            System.out.println("/mbti: "+mbti);
+            return ResponseEntity.ok(mbti);
         }
     }
 
     @PostMapping("/mbti")
-    public ResponseEntity<String> setMbti(@Valid @ModelAttribute mbtiDto mbtiDto, HttpServletRequest request, BindingResult result) throws Exception {
-        
-        if(result.hasErrors()) {
+        public ResponseEntity<String> setMbti(@RequestParam("mbti") String mbti, HttpServletRequest request, BindingResult result) throws Exception {
+        String name = (String) session.getAttribute("name");
+        if (result.hasErrors()) {
             System.out.println("haserror 오류");
             return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/").build();
-        }
-        else {
-            mbtiService.setMbti(mbtiDto.getName(), mbtiDto.getMbti());
+        } else {
+            mbtiService.setMbti(name, mbti);
             return ResponseEntity.ok("ok");
         }
     }

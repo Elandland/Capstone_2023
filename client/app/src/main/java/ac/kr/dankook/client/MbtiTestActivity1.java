@@ -79,7 +79,6 @@ public class MbtiTestActivity1 extends Activity {
 
     int result;
 
-    String name;
 
     private final int QUESTION_COUNT=12;
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,57 +115,26 @@ public class MbtiTestActivity1 extends Activity {
 
         SetEvent();
 
+
     }
 
     int setMbti(String mbti) throws IOException {
         Retrofit retrofit = RetrofitClient.getClient();
         apiService api = retrofit.create(apiService.class);
 
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try  {
-                    name = getName();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-        Call<String> call = api.setMbti(name, mbti);
+        Call<String> call = api.setMbti(mbti);
         Response<String> response = call.execute();
 
         if (response.isSuccessful()) {
             return 1;
-        }
-        else {
+        } else {
             return -1;
-        }
-    }
-
-    String getName() throws IOException{
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String sessionID = sharedPreferences.getString("sessionID", "");
-
-        Retrofit retrofit = RetrofitClient.getClient();
-        apiService api = retrofit.create(apiService.class);
-
-        Call<String> call = api.getDashboard(sessionID);
-        Response<String> response = call.execute();
-        if(response.isSuccessful()) {
-            return response.body();
-        }
-        else {
-            return "null";
         }
     }
 
 
     void LoadMBTI_ResultPage(int mbti){
         Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
-        intent.putExtra("mbti",mbti);
         startActivity(intent);
     }
 

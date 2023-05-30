@@ -124,7 +124,7 @@ public class LogInActivity extends AppCompatActivity {
 
         if(response.isSuccessful()) {
             // client에서 session id를 안전한 저장소에 저장
-            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("sessionID", response.body());
             editor.apply();

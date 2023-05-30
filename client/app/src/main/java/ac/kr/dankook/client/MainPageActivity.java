@@ -79,21 +79,13 @@ public class MainPageActivity extends Activity {
         loading.bringToFront();
         loading.playAnimation();
 
+        mbti = null;
+
         image.bringToFront();
         ImageView matching = (ImageView)findViewById(R.id.login_page_logoImageView);
         matching.bringToFront();
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    mbti = getMbti();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        thread.start();
+
 
         // 내비게이션 바 버튼
         hart.setOnClickListener(new View.OnClickListener() {
@@ -142,15 +134,25 @@ public class MainPageActivity extends Activity {
 
         // mbti 검사 체크
         // get으로 사용자의 mbti 정보 가져오기
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mbti = getMbti();
 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-
-        if (mbti == null) {
-            Log.d("e", "mbti null 이어서 popup넘어감");
-            // mbti 가 null이라면 mbti 테스트가 필요하다고 3초간 알림 후 창 넘어감
-            Intent intent = new Intent(MainPageActivity.this, MbtiPagePopupActivity.class);
-            startActivityForResult(intent, 1);
-        }
+                if (mbti == null) {
+                    Log.d("e", "mbti null 이어서 popup넘어감");
+                    // mbti 가 null이라면 mbti 테스트가 필요하다고 3초간 알림 후 창 넘어감
+                    Intent intent = new Intent(MainPageActivity.this, MbtiPagePopupActivity.class);
+                    startActivityForResult(intent, 1);
+                }
+            }
+        });
+        thread.start();
 
 
     }
@@ -169,10 +171,10 @@ public class MainPageActivity extends Activity {
         });
         thread.start();
 
-        Retrofit retrofit = RetrofitClient.getheaderClient("name", name);
+        Retrofit retrofit = RetrofitClient.getClient();
         apiService api = retrofit.create(apiService.class);
 
-        Call<String> call = api.getMbti(name);
+        Call<String> call = api.getMbti();
         Response<String> response = call.execute();
         if(response.isSuccessful()) {
             Log.d("mbti response",response.body());
