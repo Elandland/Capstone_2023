@@ -66,7 +66,7 @@ public class MapPageActivity extends AppCompatActivity implements OnMapReadyCall
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapPageActivity.this, MainPageActivity.class);
+                Intent intent = new Intent(MapPageActivity.this, ReviewActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,7 +1,9 @@
 package ac.kr.dankook.client;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.io.IOException;
+
+import ac.kr.dankook.client.connect.RetrofitClient;
+import ac.kr.dankook.client.connect.apiService;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MbtiTestActivity1 extends Activity {
     int mCurrentQuestionIndex;
@@ -67,9 +77,14 @@ public class MbtiTestActivity1 extends Activity {
 
     ImageView mMBTITestProgressImageView;
 
+    int result;
+
+
     private final int QUESTION_COUNT=12;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mbti_test_1);
+
         mCurrentQuestionIndex=0;
         mIsSeletedUpAnswer=new boolean[QUESTION_COUNT];
         mUpAnswerButton=findViewById(R.id.mbti_answer_button_up);
@@ -81,14 +96,45 @@ public class MbtiTestActivity1 extends Activity {
         mDownAnswerButton.setText(DOWN_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mQuestionAnswerTextView.setText(QUESTION_TEXT_ARRAY[mCurrentQuestionIndex]);
 
+        String mbti = "ISFP";
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    result = setMbti(mbti);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(result);
+            }
+        });
+        thread.start();
+
+
+
         SetEvent();
 
+
+    }
+
+    int setMbti(String mbti) throws IOException {
+        Retrofit retrofit = RetrofitClient.getClient();
+        apiService api = retrofit.create(apiService.class);
+
+        Call<String> call = api.setMbti(mbti);
+        Response<String> response = call.execute();
+
+        if (response.isSuccessful()) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
 
     void LoadMBTI_ResultPage(int mbti){
-        Intent intent=new Intent(getApplicationContext(), MbtiTestActivity1.class);
-        intent.putExtra("mbti",mbti);
+        Intent intent=new Intent(getApplicationContext(), MainPageActivity.class);
         startActivity(intent);
     }
 
@@ -97,7 +143,7 @@ public class MbtiTestActivity1 extends Activity {
         for(int i=0;i<4;++i){
             int up_cnt=0;
             for(int j=0;j<3;++j){
-                if(mIsSeletedUpAnswer[i*4+j]){
+                if(mIsSeletedUpAnswer[i*3+j]){
                     ++up_cnt;
                 }
             }
@@ -109,12 +155,17 @@ public class MbtiTestActivity1 extends Activity {
     }
 
     void ProgressUpdate(boolean isClickUpButton){
-        mIsSeletedUpAnswer[mCurrentQuestionIndex++]=isClickUpButton;
-        if(mCurrentQuestionIndex==QUESTION_COUNT){
+
+
+        mIsSeletedUpAnswer[mCurrentQuestionIndex]=isClickUpButton;
+        mCurrentQuestionIndex++;
+
+        if(mCurrentQuestionIndex == QUESTION_COUNT){
             int mbti_result=GetMbti();
             LoadMBTI_ResultPage(mbti_result);
             return;
         }
+
         mUpAnswerButton.setText(UP_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mDownAnswerButton.setText(DOWN_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mQuestionAnswerTextView.setText(QUESTION_TEXT_ARRAY[mCurrentQuestionIndex]);

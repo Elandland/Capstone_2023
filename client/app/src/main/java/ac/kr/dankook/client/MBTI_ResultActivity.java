@@ -22,7 +22,7 @@ public class MBTI_ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mbti_result);
-        Intent intent=getIntent();
+        Intent intent = getIntent();
         assert intent!=null ;
         int mbti=intent.getIntExtra("mbti",16);
         assert mbti<16;
