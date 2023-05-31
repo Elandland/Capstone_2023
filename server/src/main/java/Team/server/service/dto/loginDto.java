@@ -10,6 +10,7 @@ import javax.persistence.Column;
 @Setter
 public class loginDto {
 
+    //원래 phone_num
     private String name;
     private String password;
 
@@ -17,5 +18,5 @@ public class loginDto {
     public loginDto(String name, String password){
         this.name = name;
         this.password = password;
-    };
+    }
 }
