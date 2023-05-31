@@ -25,19 +25,6 @@
 
     </ImageButton>
 
-    <com.google.android.gms.maps.MapView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/chating_back_ground_map"
-        app:layout_constraintBottom_toTopOf="@+id/edit_chat_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chating_page_back_button"
-        app:layout_constraintVertical_bias="0.0">
-
-    </com.google.android.gms.maps.MapView>
-
     <ListView
         android:id="@+id/chat_list"
         android:layout_width="0dp"
@@ -92,16 +79,59 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
+        app:layout_constraintWidth_percent="0.8"
         >
 
-    </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/matching_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button_pink"
+            android:orientation="vertical"
+
+            android:shadowColor="@color/black"
+            android:text="만남 취소"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintHeight_percent="0.85"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.43">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/matching_accept_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button_pink"
+
+            android:shadowColor="@color/black"
+            android:text="만남 성사"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHeight_percent="0.85"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.43">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
