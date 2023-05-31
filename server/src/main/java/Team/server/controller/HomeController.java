@@ -1,10 +1,15 @@
 package Team.server.controller;
 
 import Team.server.domain.User;
+import Team.server.repository.UserRepository;
 import Team.server.service.UserService;
 import Team.server.service.dto.UserDto;
 import Team.server.service.dto.UserDtoConverter;
 import Team.server.service.dto.loginDto;
+import Team.server.service.dto.mbtiDto;
+
+import Team.server.service.MbtiService;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -31,6 +36,8 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
     private final UserService userService;
+    private final MbtiService mbtiService;
+    private HttpSession session;
 
     // 회원가입
     @GetMapping("/register")        // /users/register로 이동할 시
@@ -73,9 +80,16 @@ public class HomeController {
         else {
             int login_res = userService.login(logindto);
             if (login_res == 1) {
-                HttpSession session = request.getSession();
+                session = request.getSession();
                 session.setAttribute("name", logindto.getName());
-                return ResponseEntity.ok("ok!");
+                System.out.println("session 저장 완료");
+                
+                System.out.println("저장완료한 id:"+session.getId());
+                // String n = session2.getAttribute("name");
+                // System.out.println("session name "+n);
+
+
+                return ResponseEntity.ok(session.getId());
             }
             else {
                 System.out.println("login_res 오류");
@@ -85,17 +99,50 @@ public class HomeController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(HttpSession session) {
+    public ResponseEntity<String> dashboard(@RequestHeader("Cookie") String sessionID, HttpServletRequest request) {
         // 세션에서 사용자 정보 가져오기
-        String name = (String) session.getAttribute("name");
+        String name = "";
+        System.out.println(sessionID);
+        System.out.println(session.getId());
+        
+
+        if (session != null && session.getId().equals(sessionID)) {
+            name = (String)session.getAttribute("name");
+        }
+        System.out.println("name="+name);
 
         if (name != null) {
-            return name;
+            return ResponseEntity.ok(name);
         } else {
             // 인증되지 않은 사용자일 경우
-            return "no";
+            return ResponseEntity.ok(null);
         }
     }
 
+    @GetMapping("/mbti")
+    public ResponseEntity<String> mbti(HttpServletRequest request) {
+        String name = (String)session.getAttribute("name");
+        
+        if (name == null) {
+            return ResponseEntity.ok(null);
+        }
+        else {
+            String mbti = mbtiService.getMbti(name);
+            System.out.println("/mbti: "+mbti);
+            return ResponseEntity.ok(mbti);
+        }
+    }
 
+    @PostMapping("/mbti")
+        public ResponseEntity<String> setMbti(@Valid @RequestBody String mbti, BindingResult result) throws Exception {
+        String name = (String) session.getAttribute("name");
+        if (result.hasErrors()) {
+            System.out.println("haserror 오류");
+            return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/").build();
+        } else {
+            mbtiService.setMbti(name, mbti);
+            return ResponseEntity.ok("ok");
+        }
+    }
+    
 }

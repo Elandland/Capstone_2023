@@ -5,17 +5,29 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import ac.kr.dankook.client.MBTI_ResultActivity;
+import ac.kr.dankook.client.ProfilePageActivity;
+import ac.kr.dankook.client.connect.RetrofitClient;
+import ac.kr.dankook.client.connect.apiService;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -30,12 +42,20 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.springframework.security.core.parameters.P;
+
+import java.io.IOException;
+
 public class MainPageActivity extends Activity {
     LottieAnimationView loading;
     ImageView image;
     ImageButton hart;
     ImageButton home;
     ImageButton profile;
+
+    String name;
+
+    String mbti;
 
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -59,9 +79,12 @@ public class MainPageActivity extends Activity {
         loading.bringToFront();
         loading.playAnimation();
 
+        mbti = null;
+
         image.bringToFront();
         ImageView matching = (ImageView)findViewById(R.id.login_page_logoImageView);
         matching.bringToFront();
+
 
 
         // 내비게이션 바 버튼
@@ -69,6 +92,8 @@ public class MainPageActivity extends Activity {
             @Override
             public void onClick(View v) {
                 hart.setPressed(true);
+                Intent intent = new Intent(MainPageActivity.this, MBTI_StartActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -76,6 +101,8 @@ public class MainPageActivity extends Activity {
             @Override
             public void onClick(View v) {
                 profile.setPressed(true);
+                Intent intent = new Intent(MainPageActivity.this, ProfilePageActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -88,6 +115,8 @@ public class MainPageActivity extends Activity {
             }
         });
 
+
+        //  진동 효과
         Boolean check = false;
         if (check == true) {
             // 진동 효과
@@ -103,7 +132,75 @@ public class MainPageActivity extends Activity {
             }
         }
 
+        // mbti 검사 체크
+        // get으로 사용자의 mbti 정보 가져오기
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mbti = getMbti();
 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (mbti == null) {
+                    Log.d("e", "mbti null 이어서 popup넘어감");
+                    // mbti 가 null이라면 mbti 테스트가 필요하다고 3초간 알림 후 창 넘어감
+                    Intent intent = new Intent(MainPageActivity.this, MbtiPagePopupActivity.class);
+                    startActivityForResult(intent, 1);
+                }
+            }
+        });
+        thread.start();
+
+
+    }
+
+
+    private String getMbti() throws IOException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    name = getName();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+        Retrofit retrofit = RetrofitClient.getClient();
+        apiService api = retrofit.create(apiService.class);
+
+        Call<String> call = api.getMbti();
+        Response<String> response = call.execute();
+        if(response.isSuccessful()) {
+            Log.d("mbti response",response.body());
+            return response.body();
+        }
+        else {
+            return null;
+        }
+    }
+
+    private String getName() throws IOException{
+        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        String sessionID = sharedPreferences.getString("sessionID", "");
+        Log.d("sessionid", sessionID);
+        Retrofit retrofit = RetrofitClient.getheaderClient("Cookie", sessionID);
+        apiService api = retrofit.create(apiService.class);
+
+        Call<String> call = api.getDashboard(sessionID);
+        Response<String> response = call.execute();
+        if(response.isSuccessful()) {
+            Log.d("name", response.body());
+            return response.body();
+        }
+        else {
+            return null;
+        }
     }
 
     private void getCurrentLocation() {
@@ -131,8 +228,10 @@ public class MainPageActivity extends Activity {
                 Location location = locationResult.getLastLocation();
 
                 // 위도 경도를 변수에 저장
-                double now1 = location.getLatitude();
-                double now2 = location.getLongitude();
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+
+
             }
         }, null);
     }

@@ -32,8 +32,8 @@ public class MBTI_ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mbti_result);
-        Intent intent=getIntent();
-        assert intent!=null;
+        Intent intent = getIntent();
+        assert intent!=null ;
         int mbti=intent.getIntExtra("mbti",16);
 
         eMBTI mbti_enum=eMBTI.values()[mbti];
