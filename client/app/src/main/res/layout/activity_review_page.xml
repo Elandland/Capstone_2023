@@ -124,7 +124,9 @@
             app:layout_constraintWidth_percent="0.8" >
 
         </TextView>
+
         <LinearLayout
+            android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
@@ -136,12 +138,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <CheckBox
                     android:id="@+id/check_0"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="48dp"
+
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="비속어 사용을 많이 해요" >
@@ -151,12 +154,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <CheckBox
                     android:id="@+id/check_1"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="매너가 별로에요" >
@@ -166,12 +169,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <CheckBox
                     android:id="@+id/check_2"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="그냥 그랬어" >
@@ -181,12 +184,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <CheckBox
                     android:id="@+id/check_3"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="친절하고 매너가 좋아요" >
@@ -195,24 +198,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <CheckBox
                     android:id="@+id/check_4"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
-                    android:text="재치 넘쳐"></CheckBox>
+                    android:text="재치가 넘쳐요"></CheckBox>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <CheckBox
                     android:id="@+id/check_5"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="채팅 응답이 빨라요" >
@@ -262,7 +265,7 @@
             android:background="#00FFFFFF"
             android:backgroundTint="@color/white"
             tools:layout_editor_absoluteX="240dp"
-            tools:layout_editor_absoluteY="85dp"
+            tools:layout_editor_absoluteY="70dp"
             tools:ignore="MissingConstraints">
         </androidx.appcompat.widget.AppCompatButton>
 
