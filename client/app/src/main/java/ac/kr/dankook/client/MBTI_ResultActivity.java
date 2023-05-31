@@ -6,13 +6,23 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.widget.TextViewCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Debug;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.util.TreeMap;
 
 public class MBTI_ResultActivity extends AppCompatActivity {
@@ -25,13 +35,21 @@ public class MBTI_ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         assert intent!=null ;
         int mbti=intent.getIntExtra("mbti",16);
-        assert mbti<16;
 
         eMBTI mbti_enum=eMBTI.values()[mbti];
         LoadView(mbti_enum);
         SetExplainText(mbti_enum);
         SetGoodMBTItextView(mbti_enum);
-        SetGoodMBTItextView(mbti_enum);
+        SetBadMBTItextView(mbti_enum);
+
+        Button btn=findViewById(R.id.go_home_button_from_mbti_result);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),MainPageActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
     void LoadView(eMBTI mbti){
@@ -170,50 +188,109 @@ public class MBTI_ResultActivity extends AppCompatActivity {
 
 
 
-    void SetExplainText(eMBTI mbti){
-        String explainTextFilePath = getFilesDir() + "/explainMBTI/" + mbti.toString() + ".txt";
-        File f= new File(explainTextFilePath);
-        String line;
-        TextView mbtiExplainTextView=findViewById(R.id.mbti_explain_text_in_mbti_result_page);
-        StringBuilder sb=new StringBuilder();
-        try {
-            BufferedReader reader=new BufferedReader(new FileReader(f));
-            while((line=reader.readLine())!=null){
-                sb.append(line);
-                sb.append("\n");
-            }
-            reader.close();
-        }catch (Exception e){
-            e.printStackTrace();
+    InputStream GetMBTIExplainTxtInputStream(eMBTI mbti){
+        switch (mbti){
+            case ENTJ:
+                return getResources().openRawResource(R.raw.entj_explain);
+            case ENTP:
+                return getResources().openRawResource(R.raw.entp_explain);
+            case INTJ:
+                return getResources().openRawResource(R.raw.intj_explain);
+            case INTP:
+                return getResources().openRawResource(R.raw.intp_explain);
+            case ESTJ:
+                return getResources().openRawResource(R.raw.estj_explain);
+            case ESFJ:
+                return getResources().openRawResource(R.raw.esfj_explain);
+            case ISTJ:
+                return getResources().openRawResource(R.raw.istj_explain);
+            case ISFJ:
+                return getResources().openRawResource(R.raw.isfj_explain);
+            case ENFJ:
+                return getResources().openRawResource(R.raw.enfj_explain);
+            case ENFP:
+                return getResources().openRawResource(R.raw.enfp_explain);
+            case INFJ:
+                return getResources().openRawResource(R.raw.infj_explain);
+            case INFP:
+                return getResources().openRawResource(R.raw.infp_explain);
+            case ESTP:
+                return getResources().openRawResource(R.raw.estp_explain);
+            case ESFP:
+                return getResources().openRawResource(R.raw.esfp_explain);
+            case ISTP:
+                return getResources().openRawResource(R.raw.istp_explain);
+            case ISFP:
+                return getResources().openRawResource(R.raw.isfp_explain);
         }
-        mbtiExplainTextView.setText(sb.toString());
+        return null;
+    }
+    void SetExplainText(eMBTI mbti){
+
+        InputStream explainTextStream=GetMBTIExplainTxtInputStream(mbti);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        int i;
+        try {
+            i = explainTextStream.read();
+            while (i != -1) {
+                byteArrayOutputStream.write(i);
+                i = explainTextStream.read();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();;
+        }
+        TextView mbtiExplainTextView=findViewById(R.id.mbti_explain_text_in_mbti_result_page);
+        mbtiExplainTextView.setText(new String(byteArrayOutputStream.toByteArray()));
+
+
     }
 
     void SetGoodMBTItextView(eMBTI mbti){
-        eMBTI[] gool_mbti_array=GetGoodMBTIArray(mbti);
-        /*
-        for(int i=0;i<gool_mbti_array.length;++i){
-            ConstraintSet set=new ConstraintSet();
-            String view_id="mbti_result_good_textview" + i;
-            TextView textView=new TextView(getApplicationContext());
-            textView.setText(gool_mbti_array[i].toString());
-            TextViewCompat.setAutoSizeTextTypeWithDefaults(textView,TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        }
-        */
+        eMBTI[] good_mbti_array=GetGoodMBTIArray(mbti);
+        ConstraintLayout parent=(ConstraintLayout)findViewById(R.id.good_mbti_layout);
+        int previous_text_view_id=R.id.good_mbti_compatibility_textView;
+        for(int i=0;i<good_mbti_array.length;++i){
 
+            TextView textView=GetMBTITextView(previous_text_view_id,good_mbti_array[i].toString());
+            parent.addView(textView);
+            previous_text_view_id=textView.getId();
+        }
+    }
+
+    TextView GetMBTITextView(int top_id, String mbti_text){
+        TextView textView=new TextView(getApplicationContext());
+        textView.setText(mbti_text.toString());
+        textView.setGravity(Gravity.CENTER);
+        textView.setTypeface(getResources().getFont(R.font.abeezee_regular));
+        textView.setTextColor(Color.BLACK);
+        textView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        int view_id=View.generateViewId();
+        textView.setLayoutParams(GetMBTITextParam(top_id));
+        textView.setId(view_id);
+        return textView;
+    }
+    ConstraintLayout.LayoutParams GetMBTITextParam(int top_id){
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+        params.matchConstraintPercentHeight=0.2f;
+        params.endToEnd=ConstraintLayout.LayoutParams.PARENT_ID;
+        params.startToStart=ConstraintLayout.LayoutParams.PARENT_ID;
+        params.topToBottom=top_id;
+
+        return params;
     }
     void SetBadMBTItextView(eMBTI mbti){
-        eMBTI[] gool_mbti_array=GetGoodMBTIArray(mbti);
-        /*
-        for(int i=0;i<gool_mbti_array.length;++i){
-            ConstraintSet set=new ConstraintSet();
-            String view_id="mbti_result_good_textview" + i;
-            TextView textView=new TextView(getApplicationContext());
-            textView.setText(gool_mbti_array[i].toString());
-            TextViewCompat.setAutoSizeTextTypeWithDefaults(textView,TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        eMBTI[] bad_mbti_array=GetBadMBTIArray(mbti);
+        ConstraintLayout parent=(ConstraintLayout)findViewById(R.id.bad_mbti_layout);
+        int previous_text_view_id=R.id.bad_mbti_compatibility_textView;
+        for(int i=0;i<bad_mbti_array.length;++i){
+            TextView textView=GetMBTITextView(previous_text_view_id,bad_mbti_array[i].toString());
+            parent.addView(textView);
+            textView.setLayoutParams(GetMBTITextParam(previous_text_view_id));
+            previous_text_view_id=textView.getId();
         }
-        */
-
     }
 
 
