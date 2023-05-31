@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -79,6 +80,9 @@ public class MbtiTestActivity1 extends Activity {
 
     int result;
 
+    String name;
+
+    String mbti;
 
     private final int QUESTION_COUNT=12;
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +100,7 @@ public class MbtiTestActivity1 extends Activity {
         mDownAnswerButton.setText(DOWN_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mQuestionAnswerTextView.setText(QUESTION_TEXT_ARRAY[mCurrentQuestionIndex]);
 
-        String mbti = "ISFP";
+        mbti = "ISFP";
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -122,7 +126,7 @@ public class MbtiTestActivity1 extends Activity {
         Retrofit retrofit = RetrofitClient.getClient();
         apiService api = retrofit.create(apiService.class);
 
-        Call<String> call = api.setMbti(mbti);
+        Call<String> call = api.setMbti("ISFP");
         Response<String> response = call.execute();
 
         if (response.isSuccessful()) {
@@ -153,6 +157,8 @@ public class MbtiTestActivity1 extends Activity {
         }
         return mbti;
     }
+
+
 
     void ProgressUpdate(boolean isClickUpButton){
 

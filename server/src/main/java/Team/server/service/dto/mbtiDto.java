@@ -10,13 +10,10 @@ import javax.persistence.Column;
 @Setter
 public class mbtiDto {
 
-    private String name;
-
     private String mbti;
 
     @Builder
-    public mbtiDto(String name, String mbti) {
-        this.name = name;
+    public mbtiDto(String mbti) {
         this.mbti = mbti;
     }
 
