@@ -134,7 +134,7 @@ public class HomeController {
     }
 
     @PostMapping("/mbti")
-        public ResponseEntity<String> setMbti(@RequestParam("mbti") String mbti, HttpServletRequest request, BindingResult result) throws Exception {
+        public ResponseEntity<String> setMbti(@Valid @RequestBody String mbti, BindingResult result) throws Exception {
         String name = (String) session.getAttribute("name");
         if (result.hasErrors()) {
             System.out.println("haserror 오류");
@@ -145,6 +145,4 @@ public class HomeController {
         }
     }
     
-
-
 }

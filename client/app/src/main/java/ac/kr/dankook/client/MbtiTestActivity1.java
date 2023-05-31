@@ -143,7 +143,7 @@ public class MbtiTestActivity1 extends Activity {
         for(int i=0;i<4;++i){
             int up_cnt=0;
             for(int j=0;j<3;++j){
-                if(mIsSeletedUpAnswer[i*4+j]){
+                if(mIsSeletedUpAnswer[i*3+j]){
                     ++up_cnt;
                 }
             }
@@ -155,12 +155,17 @@ public class MbtiTestActivity1 extends Activity {
     }
 
     void ProgressUpdate(boolean isClickUpButton){
-        mIsSeletedUpAnswer[mCurrentQuestionIndex++]=isClickUpButton;
-        if(mCurrentQuestionIndex==QUESTION_COUNT){
+
+
+        mIsSeletedUpAnswer[mCurrentQuestionIndex]=isClickUpButton;
+        mCurrentQuestionIndex++;
+
+        if(mCurrentQuestionIndex == QUESTION_COUNT){
             int mbti_result=GetMbti();
             LoadMBTI_ResultPage(mbti_result);
             return;
         }
+
         mUpAnswerButton.setText(UP_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mDownAnswerButton.setText(DOWN_ANSWER_TEXT_ARRAY[mCurrentQuestionIndex]);
         mQuestionAnswerTextView.setText(QUESTION_TEXT_ARRAY[mCurrentQuestionIndex]);
