@@ -14,14 +14,17 @@ public class Profile {
 
     @Id //기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Email")
-    private String email;
+    @Column(name = "User_Id")
+    private String id;
+
+    @Column(name = "Phone_num")
+    private String phone_num;
 
     @Column(name = "MBTI")
     private Long mbti;
 
-    @Column(name = "Nickname")
-    private String nickname;
+    @Column(name = "Name")
+    private String name;
 
     @Column(name = "Introduce",nullable = false,length = 50)
     private String introduce;

@@ -30,9 +30,8 @@ public class MbtiService {
     @Transactional
     public void setMbti(String name, String mbti) {
         User findUser = userRepository.findByName(name);
-        Long id = findUser.getId();
         if(findUser != null) {
-            userRepository.updatePartialUser(id, mbti);
+            userRepository.updateMbti(name, mbti);
         }
     }
 }

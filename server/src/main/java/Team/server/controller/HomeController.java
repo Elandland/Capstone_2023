@@ -120,7 +120,7 @@ public class HomeController {
     }
 
     @GetMapping("/mbti")
-    public ResponseEntity<String> mbti(HttpServletRequest request) {
+    public ResponseEntity<String> getMbti(HttpServletRequest request) {
         String name = (String)session.getAttribute("name");
         
         if (name == null) {
@@ -134,13 +134,14 @@ public class HomeController {
     }
 
     @PostMapping("/mbti")
-        public ResponseEntity<String> setMbti(@Valid @RequestBody String mbti, BindingResult result) throws Exception {
-        String name = (String) session.getAttribute("name");
+        public ResponseEntity<String> setMbti(@Valid @ModelAttribute mbtiDto mbtiDto, BindingResult result) throws Exception {
+        String name = (String)session.getAttribute("name");
+        System.out.println("mbti: "+ mbtiDto.getMbti());
         if (result.hasErrors()) {
             System.out.println("haserror 오류");
             return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/").build();
         } else {
-            mbtiService.setMbti(name, mbti);
+            mbtiService.setMbti(name, mbtiDto.getMbti());
             return ResponseEntity.ok("ok");
         }
     }

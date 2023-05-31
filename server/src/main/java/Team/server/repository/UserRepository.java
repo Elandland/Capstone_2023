@@ -13,9 +13,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    @Modifying
-    @Query("UPDATE User u SET u.mbti = :mbti WHERE u.id = :id")
-    void updatePartialUser(@Param("id") Long id, @Param("mbti") String mbti);
+    @Query("UPDATE User u SET u.mbti =:mbti WHERE u.name=:name")
+    public void updateMbti(String name, String mbti);
 
     public User findByName(String name);
     // public User findById(long id);

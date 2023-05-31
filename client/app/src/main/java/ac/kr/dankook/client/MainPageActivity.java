@@ -79,8 +79,6 @@ public class MainPageActivity extends Activity {
         loading.bringToFront();
         loading.playAnimation();
 
-        mbti = null;
-
         image.bringToFront();
         ImageView matching = (ImageView)findViewById(R.id.login_page_logoImageView);
         matching.bringToFront();
